@@ -18,20 +18,19 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
   }, []);
 
   const navLinks = [
-    { name: 'Citadel Base', href: '#citadel-base', id: 'citadel-base' },
-    { name: 'Barracks (Skills)', href: '#army-camps', id: 'army-camps' },
-    { name: 'Expedition Log', href: '#war-log', id: 'war-log', icon: 'explore' },
+    { name: 'Base', href: '#citadel-base', id: 'citadel-base' },
+    { name: 'Skills', href: '#army-camps', id: 'army-camps' },
+    { name: 'Projects Log', href: '#war-log', id: 'war-log', icon: '' },
     { name: 'Guild Hall', href: '#laboratory', id: 'laboratory' },
-    { name: 'Summon CV', href: '#clan-recruitment', id: 'clan-recruitment', icon: 'description' },
+    { name: 'Summon CV', href: '#clan-recruitment', id: 'clan-recruitment', icon: '' },
   ];
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
-        scrolled
-          ? 'bg-surface-container-lowest/98 backdrop-blur-md shadow-[0_12px_24px_-4px_rgba(0,0,0,0.85)] border-b border-surface-container-highest/60'
-          : 'bg-surface-container-lowest/95 backdrop-blur-md shadow-[0_12px_24px_-4px_rgba(0,0,0,0.75)]'
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${scrolled
+        ? 'bg-surface-container-lowest/98 backdrop-blur-md shadow-[0_12px_24px_-4px_rgba(0,0,0,0.85)] border-b border-surface-container-highest/60'
+        : 'bg-surface-container-lowest/95 backdrop-blur-md shadow-[0_12px_24px_-4px_rgba(0,0,0,0.75)]'
+        }`}
     >
       <div className="h-24 max-w-[1200px] mx-auto px-gutter-desktop flex items-center justify-between gap-space-md">
         {/* Chief Emblem & Crest */}
@@ -100,11 +99,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
               <a
                 key={link.id}
                 href={link.href}
-                className={`font-label text-[12px] uppercase px-space-sm py-1.5 transition-all flex items-center gap-1 ${
-                  isActive
-                    ? 'bg-primary-container text-on-primary-container font-bold rounded shadow-[0_3px_0_#996f00]'
-                    : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded'
-                }`}
+                className={`font-label text-[12px] uppercase px-space-sm py-1.5 transition-all flex items-center gap-1 ${isActive
+                  ? 'bg-primary-container text-on-primary-container font-bold rounded shadow-[0_3px_0_#996f00]'
+                  : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded'
+                  }`}
               >
                 {link.icon && (
                   <span className="material-symbols-outlined text-[16px]">{link.icon}</span>

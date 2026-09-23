@@ -309,14 +309,14 @@ export const DIRECT_OUTPOSTS: DirectOutpost[] = [
   },
   {
     name: 'Direct Mail Scroll',
-    handle: 'milan.modak.dev@gmail.com →',
-    url: 'mailto:milan.modak.dev@gmail.com',
+    handle: 'milanmodak2005@gmail.com →',
+    url: 'mailto:milanmodak2005@gmail.com',
     icon: 'mail',
     color: 'text-tertiary',
   },
   {
     name: 'Clan Discord',
-    handle: '@chiefmilan.modak →',
+    handle: '@chiefmilanmodak →',
     url: 'https://discord.com',
     icon: 'forum',
     color: 'text-primary-fixed',

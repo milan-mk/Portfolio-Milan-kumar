@@ -81,7 +81,7 @@ export const RecruitmentSection: React.FC = () => {
                 </div>
 
                 {/* Role Offer Type Dropdown */}
-                <div className="flex flex-col gap-1">
+                {/* <div className="flex flex-col gap-1">
                   <label className="font-label text-[11px] uppercase tracking-wider text-outline font-bold">
                     Role / Clan Position Offered
                   </label>
@@ -95,7 +95,7 @@ export const RecruitmentSection: React.FC = () => {
                     <option value="intern">Software Engineering Intern / Co-op</option>
                     <option value="contract">High-Impact Contract / MVP Build</option>
                   </select>
-                </div>
+                </div> */}
 
                 {/* Battle Orders / Message */}
                 <div className="flex flex-col gap-1">

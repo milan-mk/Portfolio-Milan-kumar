@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BarracksSection } from './components/BarracksSection';
 import { Footer } from './components/Footer';
 import { HeroSection } from './components/HeroSection';
-import { LaboratorySection } from './components/LaboratorySection';
+//import { LaboratorySection } from './components/LaboratorySection';
 import { Navbar } from './components/Navbar';
 import { RecruitmentSection } from './components/RecruitmentSection';
 import { WarLogSection } from './components/WarLogSection';
@@ -67,7 +67,7 @@ export const App: React.FC = () => {
         <WarLogSection />
 
         {/* Laboratory & Research Spells (Education & Masteries) */}
-        <LaboratorySection />
+
 
         {/* Guild Recruitment Outpost (Contact Missive & Resume) */}
         <RecruitmentSection />
