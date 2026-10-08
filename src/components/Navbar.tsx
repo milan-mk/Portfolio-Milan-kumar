@@ -1,0 +1,187 @@
+import React, { useState, useEffect } from 'react';
+import { CHIEF_INFO, RESOURCE_METERS } from '../data/portfolioData';
+
+interface NavbarProps {
+  activeSection: string;
+}
+
+export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: 'Base', href: '#citadel-base', id: 'citadel-base' },
+    { name: 'Skills', href: '#army-camps', id: 'army-camps' },
+    { name: 'Projects Log', href: '#war-log', id: 'war-log', icon: '' },
+    { name: 'Guild Hall', href: '#laboratory', id: 'laboratory' },
+    { name: 'Summon CV', href: '#clan-recruitment', id: 'clan-recruitment', icon: '' },
+  ];
+
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${scrolled
+        ? 'bg-surface-container-lowest/98 backdrop-blur-md shadow-[0_12px_24px_-4px_rgba(0,0,0,0.85)] border-b border-surface-container-highest/60'
+        : 'bg-surface-container-lowest/95 backdrop-blur-md shadow-[0_12px_24px_-4px_rgba(0,0,0,0.75)]'
+        }`}
+    >
+      <div className="h-24 max-w-[1200px] mx-auto px-gutter-desktop flex items-center justify-between gap-space-md">
+        {/* Chief Emblem & Crest */}
+        <a href="#citadel-base" className="flex items-center gap-space-sm shrink-0 group">
+          <img
+            alt="Clash Dev Emblem Logo"
+            className="h-10 w-auto object-contain transition-transform group-hover:scale-105"
+            src={CHIEF_INFO.emblemImg}
+          />
+          <div className="flex flex-col">
+            <div className="flex items-center gap-space-2xs">
+              <span className="font-headline-sm text-headline-sm uppercase text-primary tracking-wide group-hover:text-primary-container transition-colors">
+                Chief {CHIEF_INFO.name.split(' ')[0]}
+              </span>
+            </div>
+            <div className="flex items-center gap-space-xs">
+              <span className="font-label text-[11px] uppercase tracking-widest text-on-surface-variant font-bold">
+                TH Level {CHIEF_INFO.townHallLevel}
+              </span>
+              <span className="font-label text-[10px] px-space-2xs py-0.5 bg-surface-container-high rounded text-tertiary-fixed font-bold">
+                {CHIEF_INFO.roleBadge}
+              </span>
+            </div>
+          </div>
+        </a>
+
+        {/* Live Resource HUD Bars */}
+        <div className="hidden xl:flex items-center gap-space-md shrink-0">
+          {RESOURCE_METERS.map((meter) => {
+            const isGold = meter.color === 'primary';
+            const isElixir = meter.color === 'secondary';
+            const textColor = isGold ? 'text-primary' : isElixir ? 'text-secondary' : 'text-tertiary';
+            const barColor = isGold ? 'bg-primary-container' : isElixir ? 'bg-secondary-container' : 'bg-tertiary';
+
+            return (
+              <div
+                key={meter.id}
+                className="flex flex-col gap-1 w-36 bg-surface-container-lowest p-1.5 rounded border border-surface-container-high/40 shadow-[0_2px_0_#110d0b]"
+                title={`${meter.name}: ${meter.current} / ${meter.max}`}
+              >
+                <div className="flex justify-between items-center px-1 font-label text-[11px] font-bold">
+                  <span className={`${textColor} flex items-center gap-1`}>
+                    <span className="material-symbols-outlined text-[13px]">{meter.icon}</span>
+                    {meter.name.split(' ')[0]}
+                  </span>
+                  <span className="text-on-surface font-mono text-[10px]">
+                    {meter.current} / {meter.max}
+                  </span>
+                </div>
+                <div className="h-2 w-full bg-surface-container-high rounded-full overflow-hidden p-[1px]">
+                  <div
+                    className={`h-full ${barColor} rounded-full transition-all duration-500`}
+                    style={{ width: `${meter.percentage}%` }}
+                  ></div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden lg:flex items-center gap-space-xs bg-surface-container p-1 rounded-lg border border-surface-container-highest/60 shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)]">
+          {navLinks.map((link) => {
+            const isActive = activeSection === link.id;
+            return (
+              <a
+                key={link.id}
+                href={link.href}
+                className={`font-label text-[12px] uppercase px-space-sm py-1.5 transition-all flex items-center gap-1 ${isActive
+                  ? 'bg-primary-container text-on-primary-container font-bold rounded shadow-[0_3px_0_#996f00]'
+                  : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded'
+                  }`}
+              >
+                {link.icon && (
+                  <span className="material-symbols-outlined text-[16px]">{link.icon}</span>
+                )}
+                {link.name}
+              </a>
+            );
+          })}
+        </nav>
+
+        {/* CTA & Status Badge */}
+        <div className="flex items-center gap-space-sm shrink-0">
+          <div className="hidden sm:flex flex-col items-end">
+            <span className="font-label text-[11px] uppercase tracking-wider text-tertiary flex items-center gap-1 font-bold">
+              <span className="inline-block w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+              {CHIEF_INFO.status}
+            </span>
+            <span className="font-body text-[12px] text-on-surface-variant">
+              {CHIEF_INFO.statusDetail}
+            </span>
+          </div>
+
+          <a
+            href="#clan-recruitment"
+            className="inline-flex items-center justify-center font-display font-bold text-[14px] px-space-md py-2 bg-primary-container text-on-primary-container uppercase rounded shadow-[0_3px_0_#996f00] hover:brightness-105 active:translate-y-[2px] active:shadow-[0_1px_0_#996f00] transition-all"
+          >
+            Hire Chief
+          </a>
+
+          <img
+            alt={CHIEF_INFO.name}
+            className="w-9 h-9 rounded-full object-cover border-2 border-primary-container/70 shadow-[0_0_8px_rgba(255,184,0,0.4)]"
+            src={CHIEF_INFO.avatarImg}
+          />
+
+          {/* Mobile menu toggle */}
+          <button
+            type="button"
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="lg:hidden p-2 rounded bg-surface-container text-on-surface hover:bg-surface-container-high transition-colors"
+            aria-label="Toggle menu"
+          >
+            <span className="material-symbols-outlined text-[24px]">
+              {mobileMenuOpen ? 'close' : 'menu'}
+            </span>
+          </button>
+        </div>
+      </div>
+
+      {/* Mobile Drawer */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden bg-surface-container-lowest border-b border-surface-container-highest px-gutter-mobile py-4 flex flex-col gap-3 animate-in fade-in slide-in-from-top-2">
+          {/* Mobile Resource meters */}
+          <div className="grid grid-cols-3 gap-2 pb-2 border-b border-surface-container-high">
+            {RESOURCE_METERS.map((meter) => (
+              <div key={meter.id} className="bg-surface-container-low p-1.5 rounded text-center">
+                <span className="font-label text-[10px] text-outline uppercase block">
+                  {meter.name.split(' ')[0]}
+                </span>
+                <span className="font-display font-bold text-xs text-primary">{meter.current}</span>
+              </div>
+            ))}
+          </div>
+
+          {navLinks.map((link) => (
+            <a
+              key={link.id}
+              href={link.href}
+              onClick={() => setMobileMenuOpen(false)}
+              className="font-label text-[13px] uppercase py-2 px-3 rounded bg-surface-container hover:bg-surface-container-high text-on-surface flex items-center gap-2"
+            >
+              {link.icon && (
+                <span className="material-symbols-outlined text-[18px] text-primary">{link.icon}</span>
+              )}
+              {link.name}
+            </a>
+          ))}
+        </div>
+      )}
+    </header>
+  );
+};
