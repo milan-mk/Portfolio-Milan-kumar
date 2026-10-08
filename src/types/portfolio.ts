@@ -13,12 +13,23 @@ export interface SkillUnit {
   id: string;
   name: string;
   code: string;
+  isIcon?: boolean;
   rank: string;
   level: number;
   description: string;
   metricLabel: string;
   metricValue: number;
   colorType: 'primary' | 'secondary' | 'tertiary' | 'primary-fixed';
+}
+
+export interface SkillCategory {
+  id: string;
+  name: string;
+  subtitle: string;
+  tierBadge: string;
+  icon: string;
+  themeColor: 'primary' | 'secondary' | 'tertiary' | 'primary-fixed';
+  skills: SkillUnit[];
 }
 
 export interface ProjectCampaign {
