@@ -27,8 +27,12 @@ export interface SkillCategory {
   name: string;
   subtitle: string;
   tierBadge: string;
+  elementBadge?: string;
+  elementColor?: string;
+  troopName?: string;
+  troopImage?: string;
   icon: string;
-  themeColor: 'primary' | 'secondary' | 'tertiary' | 'primary-fixed';
+  themeColor: 'primary' | 'secondary' | 'tertiary' | 'primary-fixed' | 'purple' | 'orange';
   skills: SkillUnit[];
 }
 
