@@ -25,11 +25,10 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
   }, []);
 
   const navLinks = [
-    { name: 'Base', href: '#citadel-base', id: 'citadel-base' },
-    { name: 'Skills', href: '#army-camps', id: 'army-camps' },
-    { name: 'Projects Log', href: '#war-log', id: 'war-log', icon: '' },
-    { name: 'Guild Hall', href: '#laboratory', id: 'laboratory' },
-    { name: 'Summon CV', href: '#clan-recruitment', id: 'clan-recruitment', icon: '' },
+    { name: 'Base', href: '#citadel-base', id: 'citadel-base', icon: 'fort' },
+    { name: 'Skills', href: '#army-camps', id: 'army-camps', icon: 'swords' },
+    { name: 'Projects Log', href: '#war-log', id: 'war-log', icon: 'military_tech' },
+    { name: 'Summon CV', href: '#clan-recruitment', id: 'clan-recruitment', icon: 'mark_email_read' },
   ];
 
   return (
@@ -39,7 +38,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
         : 'bg-surface-container-lowest/95 backdrop-blur-md shadow-[0_12px_24px_-4px_rgba(0,0,0,0.75)]'
         }`}
     >
-      <div className="h-16 sm:h-20 max-w-[1040px] mx-auto px-4 sm:px-6 flex items-center justify-between gap-3 sm:gap-4">
+      <div className="h-16 sm:h-20 max-w-[1240px] mx-auto px-4 sm:px-6 flex items-center justify-between gap-3 sm:gap-4">
         {/* Chief Emblem & Crest */}
         <a href="#citadel-base" className="flex items-center gap-2 shrink-0 group">
           <img

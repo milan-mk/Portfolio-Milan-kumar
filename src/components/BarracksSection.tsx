@@ -63,7 +63,7 @@ export const BarracksSection: React.FC = () => {
   };
 
   return (
-    <section id="army-camps" className="w-full px-4 sm:px-6 py-6 sm:py-8">
+    <section id="army-camps" className="w-full px-4 sm:px-6 py-8 sm:py-12 lg:py-14">
       <div className="max-w-[1100px] mx-auto flex flex-col gap-5">
         {/* Section Header Bar */}
         <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 pb-2 border-b border-surface-container-highest">
@@ -114,7 +114,7 @@ export const BarracksSection: React.FC = () => {
                   <img
                     src={cat.troopImage}
                     alt={cat.troopName || cat.name}
-                    className="w-3.5 h-3.5 object-contain"
+                    className="w-5 h-5 object-contain"
                   />
                 )}
                 <span>{cat.elementBadge || cat.name}</span>
@@ -137,7 +137,7 @@ export const BarracksSection: React.FC = () => {
                 {/* Top Card Header */}
                 <div className="flex items-center gap-3 pb-3 border-b border-surface-container-highest/50">
                   {/* Troop Character Avatar */}
-                  <div className="relative w-12 h-12 shrink-0 rounded-lg bg-surface-container-highest/50 p-1 flex items-center justify-center border border-surface-container-highest group-hover:scale-105 transition-transform duration-300">
+                  <div className="relative w-14 h-14 shrink-0 rounded-lg bg-surface-container-highest/50 p-1 flex items-center justify-center border border-surface-container-highest group-hover:scale-105 transition-transform duration-300">
                     {category.troopImage ? (
                       <img
                         src={category.troopImage}
