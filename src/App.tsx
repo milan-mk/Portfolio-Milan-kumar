@@ -71,7 +71,7 @@ export const App: React.FC = () => {
       <Navbar activeSection={activeSection} />
 
       {/* Main Village Grounds */}
-      <main className="relative z-10 w-full pt-16 sm:pt-20 flex-grow flex flex-col">
+      <main className="relative z-10 w-full pt-16 sm:pt-20 pb-12 sm:pb-16 flex-grow flex flex-col gap-8 sm:gap-14 lg:gap-16">
         {/* Village Base Town Hall & Chief Narrative (Above fold, instant load) */}
         <HeroSection />
 

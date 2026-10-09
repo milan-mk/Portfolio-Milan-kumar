@@ -20,7 +20,7 @@ export const RecruitmentSection: React.FC = () => {
   };
 
   return (
-    <section id="clan-recruitment" className="w-full px-4 sm:px-6 py-6 sm:py-8">
+    <section id="clan-recruitment" className="w-full px-4 sm:px-6 py-8 sm:py-12 lg:py-14">
       <div className="max-w-[1040px] mx-auto">
         <div className="relative bg-surface-container rounded-xl p-4 sm:p-6 flex flex-col gap-4 shadow-[0_12px_24px_rgba(0,0,0,0.7)] border border-surface-container-highest/70 overflow-hidden">
           {/* Runic Border Trim Highlight */}

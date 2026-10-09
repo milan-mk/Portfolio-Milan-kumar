@@ -43,6 +43,10 @@ export interface ProjectCampaign {
   category: string;
   description: string;
   stars: number;
+  hp?: number;
+  troopName?: string;
+  troopImage?: string;
+  pillTheme?: 'cyan' | 'amber' | 'purple' | 'emerald';
   image: string;
   badgeHighlight: string;
   lootWon: {

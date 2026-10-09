@@ -2,11 +2,25 @@ import React from 'react';
 import { CAMPAIGN_PROJECTS } from '../data/portfolioData';
 
 export const WarLogSection: React.FC = () => {
+  const getPillStyles = (theme?: string) => {
+    switch (theme) {
+      case 'cyan':
+        return 'bg-cyan-500/20 text-cyan-300 border-cyan-400/50 hover:bg-cyan-500/30';
+      case 'amber':
+        return 'bg-amber-500/20 text-amber-300 border-amber-400/50 hover:bg-amber-500/30';
+      case 'purple':
+        return 'bg-purple-500/20 text-purple-300 border-purple-400/50 hover:bg-purple-500/30';
+      case 'emerald':
+      default:
+        return 'bg-emerald-500/20 text-emerald-300 border-emerald-400/50 hover:bg-emerald-500/30';
+    }
+  };
+
   return (
-    <section id="war-log" className="w-full px-4 sm:px-6 py-6 sm:py-8">
-      <div className="max-w-[1040px] mx-auto flex flex-col gap-5">
+    <section id="war-log" className="w-full px-4 sm:px-6 py-8 sm:py-12 lg:py-14">
+      <div className="max-w-[1040px] mx-auto flex flex-col gap-6">
         {/* Section Header Bar */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-1.5 pb-2 border-b border-surface-container-highest">
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-1.5 pb-3 border-b border-surface-container-highest">
           <div>
             <div className="flex items-center gap-1.5 text-primary font-label text-[11px] uppercase tracking-widest font-bold">
               <span className="material-symbols-outlined text-[16px]">military_tech</span>
@@ -27,90 +41,152 @@ export const WarLogSection: React.FC = () => {
         </div>
 
         {/* Projects Grid: Clan War Attack Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6">
           {CAMPAIGN_PROJECTS.map((project) => {
+            const pillStyle = getPillStyles(project.pillTheme);
+            const hpValue = project.hp || 95;
+
             return (
               <div
                 key={project.id}
-                className="relative bg-surface-container rounded-xl p-4 sm:p-5 flex flex-col gap-3 shadow-[0_4px_0_#050811] border border-surface-container-highest/70 overflow-hidden group hover:border-secondary/50 transition-all duration-300"
+                className="relative bg-surface-container/95 backdrop-blur-xs rounded-2xl p-5 sm:p-6 flex flex-col justify-between gap-4 shadow-[0_8px_24px_rgba(0,0,0,0.55),0_0_0_1px_rgba(255,255,255,0.06)] border border-surface-container-highest/80 overflow-hidden group hover:border-secondary/60 hover:-translate-y-1 transition-all duration-300"
               >
-                {/* Header info & stars */}
-                <div className="flex items-start justify-between gap-2">
-                  <div className="flex flex-col">
-                    <div className="flex items-center gap-1.5">
-                      <span className="font-label text-[10px] uppercase text-primary-container font-bold">
-                        Quest #{project.questNumber} Conquered
-                      </span>
-                      <span className="px-1.5 py-0.5 rounded bg-surface-container-highest font-label text-[9px] text-outline uppercase font-bold border border-surface-container-high">
-                        {project.category}
-                      </span>
+                {/* Background Watermark Sprite (like silhouette in reference image) */}
+                {project.troopImage && (
+                  <img
+                    src={project.troopImage}
+                    alt=""
+                    aria-hidden="true"
+                    className="absolute -right-6 -bottom-6 w-44 h-44 object-contain opacity-5 pointer-events-none filter grayscale contrast-200 group-hover:opacity-8 transition-opacity duration-300"
+                  />
+                )}
+
+                {/* Card Top Row: Troop Character Sprite (Left) & HP Bar + Stars (Right) */}
+                <div className="flex items-center justify-between gap-3">
+                  {/* Left: Troop Character Avatar & Quest Info */}
+                  <div className="flex items-center gap-3">
+                    {project.troopImage ? (
+                      <div className="relative w-14 h-14 sm:w-16 sm:h-16 shrink-0 flex items-center justify-center p-1 rounded-xl bg-surface-container-highest/60 border border-surface-container-highest shadow-[0_4px_12px_rgba(0,0,0,0.5)] group-hover:scale-105 transition-transform duration-300">
+                        <img
+                          src={project.troopImage}
+                          alt={project.troopName || project.title}
+                          className="w-full h-full object-contain filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.6)]"
+                          loading="lazy"
+                        />
+                      </div>
+                    ) : (
+                      <div className="w-12 h-12 rounded-xl bg-surface-container-high flex items-center justify-center border border-surface-container-highest">
+                        <span className="material-symbols-outlined text-primary text-[24px]">swords</span>
+                      </div>
+                    )}
+                    <div className="flex flex-col">
+                      <div className="flex items-center gap-1.5">
+                        <span className="font-label text-[10px] uppercase text-primary-container font-extrabold tracking-wider">
+                          Quest #{project.questNumber}
+                        </span>
+                        <span className="px-1.5 py-0.2 rounded bg-surface-container-highest font-label text-[9px] text-outline uppercase font-bold border border-surface-container-high">
+                          {project.category}
+                        </span>
+                      </div>
+                      {project.troopName && (
+                        <span className="font-label text-[11px] text-on-surface-variant font-bold tracking-wide">
+                          Guardian: <span className="text-secondary">{project.troopName}</span>
+                        </span>
+                      )}
                     </div>
-                    <h3 className="font-display text-lg font-bold uppercase text-on-surface transition-colors group-hover:text-secondary mt-0.5">
-                      {project.title}
-                    </h3>
                   </div>
 
-                  {/* 3-Star Badge */}
-                  <div className="flex items-center gap-0.5 bg-surface-container-lowest px-1.5 py-0.5 rounded shadow-[0_1px_0_#050811] shrink-0 border border-surface-container-high/60">
-                    {Array.from({ length: project.stars }).map((_, i) => (
-                      <span key={i} className="material-symbols-outlined text-primary-container text-[15px] material-symbols-fill">
-                        star
+                  {/* Right: HP Bar & 3 Stars Badge */}
+                  <div className="flex flex-col items-end gap-1.5 shrink-0">
+                    {/* HP Meter (Game Styled) */}
+                    <div className="flex items-center gap-1.5 bg-surface-container-lowest/90 px-2.5 py-1 rounded-md border border-surface-container-high/60 shadow-xs">
+                      <span className="font-label font-black text-[11px] text-primary-container tracking-wider">
+                        HP
                       </span>
-                    ))}
+                      <div className="w-14 sm:w-16 h-2 bg-surface-container-high rounded-full overflow-hidden p-[1px]">
+                        <div
+                          className="h-full rounded-full bg-gradient-to-r from-amber-500 to-primary-container shadow-[0_0_6px_rgba(245,158,11,0.6)]"
+                          style={{ width: `${hpValue}%` }}
+                        />
+                      </div>
+                      <span className="font-mono font-bold text-[11px] text-on-surface">
+                        {hpValue}
+                      </span>
+                    </div>
+
+                    {/* 3-Star Badge */}
+                    <div className="flex items-center gap-0.5 bg-surface-container-lowest/80 px-1.5 py-0.5 rounded shadow-xs border border-surface-container-high/40">
+                      {Array.from({ length: project.stars }).map((_, i) => (
+                        <span key={i} className="material-symbols-outlined text-primary-container text-[13px] material-symbols-fill">
+                          star
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
 
-                {/* Project Image Preview */}
-                <div className="relative w-full h-36 sm:h-40 rounded-lg overflow-hidden shadow-[inset_0_2px_8px_rgba(0,0,0,0.6)] border border-surface-container-highest/60 bg-surface-container-lowest">
+                {/* Project Title */}
+                <div>
+                  <h3 className="font-display text-lg sm:text-xl font-black uppercase text-on-surface tracking-wide group-hover:text-secondary transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="font-body text-xs sm:text-sm text-on-surface-variant leading-relaxed mt-1">
+                    {project.description}
+                  </p>
+                </div>
+
+                {/* Project Image Preview with subtle badge */}
+                <div className="relative w-full h-32 sm:h-36 rounded-lg overflow-hidden shadow-[inset_0_2px_8px_rgba(0,0,0,0.6)] border border-surface-container-highest/60 bg-surface-container-lowest">
                   <img
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     alt={project.title}
                     src={project.image}
+                    loading="lazy"
                   />
                   <div className="absolute bottom-1.5 left-1.5 px-2 py-0.5 rounded bg-surface-container-lowest/90 backdrop-blur font-label text-[10px] font-bold text-on-surface border border-surface-container-high shadow-xs">
                     {project.badgeHighlight}
                   </div>
                 </div>
 
-                {/* Description */}
-                <p className="font-body text-xs sm:text-sm text-on-surface-variant leading-relaxed">
-                  {project.description}
-                </p>
-
-                {/* Loot Won (Impact Metrics) */}
-                <div className="grid grid-cols-3 gap-1 bg-surface-container-lowest p-2 rounded shadow-[0_1px_0_#050811] border border-surface-container-high/40">
-                  <div className="flex flex-col text-center">
-                    <span className="font-display font-bold text-sm sm:text-base text-primary">
+                {/* Tactical Combat Metrics with ⚔ Icons (Matching User Reference Image) */}
+                <div className="bg-surface-container-lowest/85 rounded-xl p-3 border border-surface-container-high/60 flex flex-col gap-2 shadow-[inset_0_2px_6px_rgba(0,0,0,0.4)]">
+                  <div className="flex items-center justify-between text-xs font-mono">
+                    <span className="flex items-center gap-1.5 text-on-surface-variant font-medium">
+                      <span className="text-secondary text-[12px] filter drop-shadow-[0_0_2px_rgba(56,189,248,0.5)]">⚔</span>
+                      <span>{project.lootWon.stat1.label}</span>
+                    </span>
+                    <span className="font-bold text-primary-container tracking-wider">
                       {project.lootWon.stat1.value}
                     </span>
-                    <span className="font-label text-[9px] uppercase text-outline font-bold">
-                      {project.lootWon.stat1.label}
-                    </span>
                   </div>
-                  <div className="flex flex-col text-center border-x border-surface-container-high/50">
-                    <span className="font-display font-bold text-sm sm:text-base text-primary">
+
+                  <div className="flex items-center justify-between text-xs font-mono border-t border-surface-container-high/40 pt-1.5">
+                    <span className="flex items-center gap-1.5 text-on-surface-variant font-medium">
+                      <span className="text-secondary text-[12px] filter drop-shadow-[0_0_2px_rgba(56,189,248,0.5)]">⚔</span>
+                      <span>{project.lootWon.stat2.label}</span>
+                    </span>
+                    <span className="font-bold text-secondary tracking-wider">
                       {project.lootWon.stat2.value}
                     </span>
-                    <span className="font-label text-[9px] uppercase text-outline font-bold">
-                      {project.lootWon.stat2.label}
-                    </span>
                   </div>
-                  <div className="flex flex-col text-center">
-                    <span className="font-display font-bold text-sm sm:text-base text-primary">
-                      {project.lootWon.stat3.value}
+
+                  <div className="flex items-center justify-between text-xs font-mono border-t border-surface-container-high/40 pt-1.5">
+                    <span className="flex items-center gap-1.5 text-on-surface-variant font-medium">
+                      <span className="text-secondary text-[12px] filter drop-shadow-[0_0_2px_rgba(56,189,248,0.5)]">⚔</span>
+                      <span>{project.lootWon.stat3.label}</span>
                     </span>
-                    <span className="font-label text-[9px] uppercase text-outline font-bold">
-                      {project.lootWon.stat3.label}
+                    <span className="font-bold text-tertiary tracking-wider">
+                      {project.lootWon.stat3.value}
                     </span>
                   </div>
                 </div>
 
-                {/* Tech Badges */}
-                <div className="flex flex-wrap gap-1">
+                {/* Tech Pills (Matching Colorful Rounded Pill Badges in Reference Image) */}
+                <div className="flex flex-wrap items-center gap-1.5 pt-0.5">
                   {project.tags.map((tag, idx) => (
                     <span
                       key={idx}
-                      className="font-label text-[10px] px-2 py-0.5 rounded bg-surface-container-high text-on-surface-variant font-semibold border border-surface-container-highest hover:text-primary transition-colors"
+                      className={`font-label text-[10px] font-extrabold uppercase tracking-wider px-3 py-1 rounded-full border transition-all duration-200 cursor-default shadow-xs ${pillStyle}`}
                     >
                       {tag.name}
                     </span>
@@ -118,10 +194,10 @@ export const WarLogSection: React.FC = () => {
                 </div>
 
                 {/* Action Triggers */}
-                <div className="flex items-center gap-2 mt-auto pt-1">
+                <div className="flex items-center gap-2 mt-auto pt-2 border-t border-surface-container-highest/40">
                   <a
                     href={project.demoUrl}
-                    className="flex-1 text-center py-2 rounded-lg font-display font-bold text-xs sm:text-sm uppercase tracking-wide cursor-pointer flex items-center justify-center gap-1 btn-tactile-gold"
+                    className="flex-1 text-center py-2 rounded-lg font-display font-bold text-xs sm:text-sm uppercase tracking-wide cursor-pointer flex items-center justify-center gap-1 btn-tactile-gold shadow-xs"
                   >
                     <span className="material-symbols-outlined text-[16px] material-symbols-fill">play_arrow</span>
                     <span>Attack (Demo)</span>
