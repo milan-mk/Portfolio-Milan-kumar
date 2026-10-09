@@ -10,10 +10,17 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
+    let ticking = false;
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          setScrolled(window.scrollY > 20);
+          ticking = false;
+        });
+        ticking = true;
+      }
     };
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -32,25 +39,25 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
         : 'bg-surface-container-lowest/95 backdrop-blur-md shadow-[0_12px_24px_-4px_rgba(0,0,0,0.75)]'
         }`}
     >
-      <div className="h-24 max-w-[1200px] mx-auto px-gutter-desktop flex items-center justify-between gap-space-md">
+      <div className="h-16 sm:h-20 max-w-[1040px] mx-auto px-4 sm:px-6 flex items-center justify-between gap-3 sm:gap-4">
         {/* Chief Emblem & Crest */}
-        <a href="#citadel-base" className="flex items-center gap-space-sm shrink-0 group">
+        <a href="#citadel-base" className="flex items-center gap-2 shrink-0 group">
           <img
             alt="Clash Dev Emblem Logo"
-            className="h-10 w-auto object-contain transition-transform group-hover:scale-105"
+            className="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-105"
             src={CHIEF_INFO.emblemImg}
           />
           <div className="flex flex-col">
-            <div className="flex items-center gap-space-2xs">
-              <span className="font-headline-sm text-headline-sm uppercase text-primary tracking-wide group-hover:text-primary-container transition-colors">
+            <div className="flex items-center gap-1">
+              <span className="font-display font-black text-sm sm:text-base uppercase text-primary tracking-wide group-hover:text-primary-container transition-colors">
                 Chief {CHIEF_INFO.name.split(' ')[0]}
               </span>
             </div>
-            <div className="flex items-center gap-space-xs">
-              <span className="font-label text-[11px] uppercase tracking-widest text-on-surface-variant font-bold">
+            <div className="flex items-center gap-1.5">
+              <span className="font-label text-[10px] uppercase tracking-widest text-on-surface-variant font-bold">
                 TH Level {CHIEF_INFO.townHallLevel}
               </span>
-              <span className="font-label text-[10px] px-space-2xs py-0.5 bg-surface-container-high rounded text-tertiary-fixed font-bold">
+              <span className="font-label text-[9px] px-1.5 py-0.5 bg-surface-container-high rounded text-primary-container font-bold border border-surface-container-highest">
                 {CHIEF_INFO.roleBadge}
               </span>
             </div>
@@ -68,7 +75,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
             return (
               <div
                 key={meter.id}
-                className="flex flex-col gap-1 w-36 bg-surface-container-lowest p-1.5 rounded border border-surface-container-high/40 shadow-[0_2px_0_#110d0b]"
+                className="flex flex-col gap-1 w-36 bg-surface-container-lowest p-1.5 rounded border border-surface-container-high/40 shadow-[0_2px_0_#050811]"
                 title={`${meter.name}: ${meter.current} / ${meter.max}`}
               >
                 <div className="flex justify-between items-center px-1 font-label text-[11px] font-bold">
@@ -100,7 +107,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
                 key={link.id}
                 href={link.href}
                 className={`font-label text-[12px] uppercase px-space-sm py-1.5 transition-all flex items-center gap-1 ${isActive
-                  ? 'bg-primary-container text-on-primary-container font-bold rounded shadow-[0_3px_0_#996f00]'
+                  ? 'bg-primary-container text-on-primary-container font-bold rounded shadow-[0_3px_0_#78350f]'
                   : 'text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high rounded'
                   }`}
               >
@@ -116,8 +123,8 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
         {/* CTA & Status Badge */}
         <div className="flex items-center gap-space-sm shrink-0">
           <div className="hidden sm:flex flex-col items-end">
-            <span className="font-label text-[11px] uppercase tracking-wider text-tertiary flex items-center gap-1 font-bold">
-              <span className="inline-block w-2 h-2 rounded-full bg-tertiary animate-pulse"></span>
+            <span className="font-label text-[11px] uppercase tracking-wider text-emerald-400 flex items-center gap-1 font-bold">
+              <span className="inline-block w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
               {CHIEF_INFO.status}
             </span>
             <span className="font-body text-[12px] text-on-surface-variant">
@@ -127,14 +134,14 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
 
           <a
             href="#clan-recruitment"
-            className="inline-flex items-center justify-center font-display font-bold text-[14px] px-space-md py-2 bg-primary-container text-on-primary-container uppercase rounded shadow-[0_3px_0_#996f00] hover:brightness-105 active:translate-y-[2px] active:shadow-[0_1px_0_#996f00] transition-all"
+            className="inline-flex items-center justify-center font-display font-bold text-xs sm:text-[13px] px-3.5 py-1.5 sm:py-2 bg-primary-container text-on-primary-container uppercase rounded shadow-[0_2px_0_#78350f] hover:brightness-105 active:translate-y-[1px] active:shadow-none transition-all"
           >
             Hire Chief
           </a>
 
           <img
             alt={CHIEF_INFO.name}
-            className="w-9 h-9 rounded-full object-cover border-2 border-primary-container/70 shadow-[0_0_8px_rgba(255,184,0,0.4)]"
+            className="w-8 h-8 rounded-full object-cover border-2 border-primary-container/70 shadow-[0_0_8px_rgba(245,158,11,0.4)]"
             src={CHIEF_INFO.avatarImg}
           />
 

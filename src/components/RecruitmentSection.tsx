@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { CHIEF_INFO, DIRECT_OUTPOSTS } from '../data/portfolioData';
+import { SocialIcon } from './SocialIcon';
 
 export const RecruitmentSection: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
@@ -19,39 +20,39 @@ export const RecruitmentSection: React.FC = () => {
   };
 
   return (
-    <section id="clan-recruitment" className="w-full px-gutter-desktop py-space-xl">
-      <div className="max-w-[1200px] mx-auto">
-        <div className="relative bg-surface-container rounded-xl p-space-md sm:p-space-xl flex flex-col gap-space-lg shadow-[0_16px_32px_rgba(0,0,0,0.7)] border border-surface-container-highest/70 overflow-hidden">
+    <section id="clan-recruitment" className="w-full px-4 sm:px-6 py-6 sm:py-8">
+      <div className="max-w-[1040px] mx-auto">
+        <div className="relative bg-surface-container rounded-xl p-4 sm:p-6 flex flex-col gap-4 shadow-[0_12px_24px_rgba(0,0,0,0.7)] border border-surface-container-highest/70 overflow-hidden">
           {/* Runic Border Trim Highlight */}
-          <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-tertiary-container via-primary-container to-secondary-container"></div>
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-primary-container/20 via-primary-container to-primary-container/20"></div>
 
           {/* Section Header */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-space-md pt-2">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 pt-1">
             <div>
-              <div className="flex items-center gap-space-xs text-primary-container font-label text-[12px] uppercase tracking-widest font-bold">
-                <span className="material-symbols-outlined text-[18px]">mark_email_read</span>
+              <div className="flex items-center gap-1.5 text-primary-container font-label text-[11px] uppercase tracking-widest font-bold">
+                <span className="material-symbols-outlined text-[16px]">mark_email_read</span>
                 Guild Recruitment Outpost
               </div>
-              <h2 className="font-display text-2xl sm:text-3xl lg:text-[34px] font-extrabold uppercase text-on-surface tracking-tight mt-1">
+              <h2 className="font-display text-xl sm:text-2xl lg:text-[28px] font-extrabold uppercase text-on-surface tracking-tight mt-0.5">
                 Send a Guild Missive to {CHIEF_INFO.name}
               </h2>
             </div>
-            <div className="flex items-center gap-space-xs bg-surface-container-lowest px-space-sm py-1.5 rounded shadow-[0_2px_0_#110d0b] border border-surface-container-high/40 self-start sm:self-auto">
-              <span className="w-2.5 h-2.5 rounded-full bg-tertiary animate-pulse"></span>
-              <span className="font-label text-[11px] uppercase text-tertiary font-bold tracking-wider">
+            <div className="flex items-center gap-1.5 bg-surface-container-lowest px-2.5 py-1 rounded shadow-[0_2px_0_#050811] border border-surface-container-high/40 self-start sm:self-auto">
+              <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+              <span className="font-label text-[10px] uppercase text-emerald-400 font-bold tracking-wider">
                 0 Days Deployment Time • Ready to Build
               </span>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6">
             {/* Left Column: Parchment Form */}
-            <div className="lg:col-span-7 bg-surface-container-lowest p-space-md sm:p-space-lg rounded-xl shadow-[inset_0_4px_12px_rgba(0,0,0,0.8),0_6px_0_#110d0b] border border-surface-container-high/60 flex flex-col gap-space-md">
-              <form onSubmit={handleSubmit} className="flex flex-col gap-space-sm">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-space-sm">
+            <div className="lg:col-span-7 bg-surface-container-lowest p-3.5 sm:p-5 rounded-xl shadow-[inset_0_4px_12px_rgba(0,0,0,0.8),0_4px_0_#050811] border border-surface-container-high/60 flex flex-col gap-3">
+              <form onSubmit={handleSubmit} className="flex flex-col gap-3">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
                   {/* Name */}
                   <div className="flex flex-col gap-1">
-                    <label className="font-label text-[11px] uppercase tracking-wider text-outline font-bold">
+                    <label className="font-label text-[10px] uppercase tracking-wider text-outline font-bold">
                       Chief Name / Recruiter
                     </label>
                     <input
@@ -60,13 +61,13 @@ export const RecruitmentSection: React.FC = () => {
                       value={formData.name}
                       onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                       placeholder="e.g. Chief Sarah (Tech Lead)"
-                      className="w-full bg-surface-container p-2.5 rounded text-on-surface placeholder:text-outline font-body text-sm border border-surface-container-highest focus:outline-none focus:ring-2 focus:ring-primary-container transition-all"
+                      className="w-full bg-surface-container p-2 rounded text-on-surface placeholder:text-outline font-body text-xs sm:text-sm border border-surface-container-highest focus:outline-none focus:ring-1.5 focus:ring-primary-container transition-all"
                     />
                   </div>
 
                   {/* Email */}
                   <div className="flex flex-col gap-1">
-                    <label className="font-label text-[11px] uppercase tracking-wider text-outline font-bold">
+                    <label className="font-label text-[10px] uppercase tracking-wider text-outline font-bold">
                       Carrier Pigeon / Email
                     </label>
                     <input
@@ -75,54 +76,37 @@ export const RecruitmentSection: React.FC = () => {
                       value={formData.email}
                       onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                       placeholder="recruiter@clanengineering.io"
-                      className="w-full bg-surface-container p-2.5 rounded text-on-surface placeholder:text-outline font-body text-sm border border-surface-container-highest focus:outline-none focus:ring-2 focus:ring-primary-container transition-all"
+                      className="w-full bg-surface-container p-2 rounded text-on-surface placeholder:text-outline font-body text-xs sm:text-sm border border-surface-container-highest focus:outline-none focus:ring-1.5 focus:ring-primary-container transition-all"
                     />
                   </div>
                 </div>
 
-                {/* Role Offer Type Dropdown */}
-                {/* <div className="flex flex-col gap-1">
-                  <label className="font-label text-[11px] uppercase tracking-wider text-outline font-bold">
-                    Role / Clan Position Offered
-                  </label>
-                  <select
-                    value={formData.role}
-                    onChange={(e) => setFormData({ ...formData, role: e.target.value })}
-                    className="w-full bg-surface-container p-2.5 rounded text-on-surface font-body text-sm border border-surface-container-highest focus:outline-none focus:ring-2 focus:ring-primary-container transition-all cursor-pointer"
-                  >
-                    <option value="junior">Junior Software Engineer (Full-Time SDE I)</option>
-                    <option value="frontend">Frontend / Creative UI Engineer</option>
-                    <option value="intern">Software Engineering Intern / Co-op</option>
-                    <option value="contract">High-Impact Contract / MVP Build</option>
-                  </select>
-                </div> */}
-
                 {/* Battle Orders / Message */}
                 <div className="flex flex-col gap-1">
-                  <label className="font-label text-[11px] uppercase tracking-wider text-outline font-bold">
+                  <label className="font-label text-[10px] uppercase tracking-wider text-outline font-bold">
                     Battle Orders (Project or Team Details)
                   </label>
                   <textarea
                     required
-                    rows={4}
+                    rows={3}
                     value={formData.orders}
                     onChange={(e) => setFormData({ ...formData, orders: e.target.value })}
                     placeholder="Tell me about your product fortress, tech stack, and how you want me to contribute..."
-                    className="w-full bg-surface-container p-2.5 rounded text-on-surface placeholder:text-outline font-body text-sm border border-surface-container-highest focus:outline-none focus:ring-2 focus:ring-primary-container transition-all resize-none"
+                    className="w-full bg-surface-container p-2 rounded text-on-surface placeholder:text-outline font-body text-xs sm:text-sm border border-surface-container-highest focus:outline-none focus:ring-1.5 focus:ring-primary-container transition-all resize-none"
                   ></textarea>
                 </div>
 
                 {/* Send Button */}
                 <button
                   type="submit"
-                  className="btn-tactile-gold w-full py-3 rounded-lg font-display font-bold text-sm sm:text-base uppercase tracking-wider flex items-center justify-center gap-space-xs cursor-pointer"
+                  className="btn-tactile-gold w-full py-2.5 rounded-lg font-display font-bold text-xs sm:text-sm uppercase tracking-wider flex items-center justify-center gap-2 cursor-pointer shadow-[0_3px_0_#050811]"
                 >
-                  <span className="material-symbols-outlined text-[20px] material-symbols-fill">send</span>
+                  <span className="material-symbols-outlined text-[18px] material-symbols-fill">send</span>
                   <span>Send Clan Invitation (Dispatch)</span>
                 </button>
 
                 {submitted && (
-                  <div className="p-space-xs rounded bg-tertiary-container/20 text-tertiary text-center font-body text-xs sm:text-sm font-bold border border-tertiary/30 animate-in fade-in zoom-in-95">
+                  <div className="p-2 rounded bg-primary-container/15 text-primary-container text-center font-body text-xs font-bold border border-primary-container/30 animate-in fade-in zoom-in-95">
                     🎉 Battle Scroll Dispatched! Chief {CHIEF_INFO.name} will reply via carrier pigeon within 24 hours.
                   </div>
                 )}
@@ -130,27 +114,27 @@ export const RecruitmentSection: React.FC = () => {
             </div>
 
             {/* Right Column: Direct Channels & Resume Plaque */}
-            <div className="lg:col-span-5 flex flex-col justify-between gap-space-md">
-              <div className="bg-surface-container-lowest p-space-md rounded-xl shadow-[inset_0_4px_12px_rgba(0,0,0,0.8),0_6px_0_#110d0b] border border-surface-container-high/60 flex flex-col gap-space-sm">
-                <span className="font-label text-[11px] uppercase tracking-wider text-primary font-bold">
+            <div className="lg:col-span-5 flex flex-col justify-between gap-3 sm:gap-4">
+              <div className="bg-surface-container-lowest p-3.5 sm:p-4 rounded-xl shadow-[inset_0_4px_12px_rgba(0,0,0,0.8),0_4px_0_#050811] border border-surface-container-high/60 flex flex-col gap-2.5">
+                <span className="font-label text-[10px] uppercase tracking-wider text-primary font-bold">
                   Fast-Troop Direct Outposts
                 </span>
-                <div className="flex flex-col gap-2">
+                <div className="flex flex-col gap-1.5">
                   {DIRECT_OUTPOSTS.map((outpost, idx) => (
                     <a
                       key={idx}
                       href={outpost.url}
                       target="_blank"
                       rel="noreferrer"
-                      className="flex items-center justify-between p-space-xs rounded bg-surface-container hover:bg-surface-container-high transition-colors border border-surface-container-highest/40 group"
+                      className="flex items-center justify-between p-1.5 px-2.5 rounded bg-surface-container hover:bg-surface-container-high transition-colors border border-surface-container-highest/40 group"
                     >
-                      <span className="flex items-center gap-space-xs text-on-surface font-body text-xs sm:text-sm group-hover:text-primary transition-colors">
-                        <span className={`material-symbols-outlined ${outpost.color} text-[20px]`}>
-                          {outpost.icon}
+                      <span className="flex items-center gap-2 text-on-surface font-body text-xs group-hover:text-primary transition-colors">
+                        <span className="text-primary-container group-hover:scale-110 transition-transform flex items-center justify-center w-4 h-4 shrink-0">
+                          <SocialIcon platform={outpost.name} className="w-3.5 h-3.5" />
                         </span>
                         {outpost.name}
                       </span>
-                      <span className="font-label text-[11px] text-outline font-bold group-hover:text-on-surface transition-colors">
+                      <span className="font-label text-[10px] text-outline font-bold group-hover:text-on-surface transition-colors">
                         {outpost.handle}
                       </span>
                     </a>
@@ -159,24 +143,24 @@ export const RecruitmentSection: React.FC = () => {
               </div>
 
               {/* Resume Download Callout Plaque */}
-              <div className="bg-surface-container-high p-space-md rounded-xl shadow-[0_6px_0_#14100E] border border-surface-container-highest flex flex-col gap-space-xs">
+              <div className="bg-surface-container-high p-3.5 sm:p-4 rounded-xl shadow-[0_4px_0_#050811] border border-surface-container-highest flex flex-col gap-2">
                 <div className="flex items-center justify-between">
-                  <span className="font-display font-bold text-base text-primary uppercase">
+                  <span className="font-display font-bold text-sm text-primary uppercase">
                     Chief Scroll (Resume)
                   </span>
-                  <span className="font-label text-[10px] text-tertiary bg-surface-container-lowest px-2 py-0.5 rounded font-bold border border-tertiary/30">
+                  <span className="font-label text-[9px] text-tertiary bg-surface-container-lowest px-1.5 py-0.5 rounded font-bold border border-tertiary/30">
                     PDF V2025
                   </span>
                 </div>
                 <p className="font-body text-xs text-on-surface-variant leading-relaxed">
-                  Full technical specification, coursework, project metrics, and academic references formatted for ATS scans and hiring managers.
+                  Full technical specification, coursework, project metrics, and academic references formatted for ATS scans.
                 </p>
                 <a
                   href="/resume.pdf"
                   download
-                  className="btn-tactile-stone mt-space-2xs w-full py-2.5 rounded-lg font-display font-bold text-sm uppercase text-center flex items-center justify-center gap-2 cursor-pointer"
+                  className="btn-tactile-stone mt-1 w-full py-2 rounded-lg font-display font-bold text-xs uppercase text-center flex items-center justify-center gap-1.5 cursor-pointer shadow-[0_3px_0_#050811]"
                 >
-                  <span className="material-symbols-outlined text-[18px]">download</span>
+                  <span className="material-symbols-outlined text-[16px]">download</span>
                   <span>Download Resume Scroll</span>
                 </a>
               </div>

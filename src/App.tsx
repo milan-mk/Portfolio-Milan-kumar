@@ -2,13 +2,21 @@ import React, { useEffect, useState } from 'react';
 import { BarracksSection } from './components/BarracksSection';
 import { Footer } from './components/Footer';
 import { HeroSection } from './components/HeroSection';
+import { IntroModal } from './components/IntroModal';
 //import { LaboratorySection } from './components/LaboratorySection';
 import { Navbar } from './components/Navbar';
 import { RecruitmentSection } from './components/RecruitmentSection';
+import { ScrollReveal } from './components/ScrollReveal';
+import { TroopBackgroundLayer } from './components/TroopBackgroundLayer';
 import { WarLogSection } from './components/WarLogSection';
 
 export const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState('citadel-base');
+  const [introOpen, setIntroOpen] = useState(true);
+
+  const handleCloseIntro = () => {
+    setIntroOpen(false);
+  };
 
   useEffect(() => {
     // Tactile Click scale feedback for pushable game elements
@@ -24,57 +32,69 @@ export const App: React.FC = () => {
 
     document.addEventListener('click', handleGlobalClick);
 
-    // Scroll spy to update active section in citadel HUD
-    const handleScroll = () => {
-      const sections = ['citadel-base', 'army-camps', 'war-log', 'laboratory', 'clan-recruitment'];
-      const scrollPos = window.scrollY + 200;
-
-      for (const sectionId of sections) {
-        const el = document.getElementById(sectionId);
-        if (el) {
-          const top = el.offsetTop;
-          const height = el.offsetHeight;
-          if (scrollPos >= top && scrollPos < top + height) {
-            setActiveSection(sectionId);
-            break;
+    // High-performance IntersectionObserver for Citadel HUD scroll spy (zero layout thrashing)
+    const sectionIds = ['citadel-base', 'army-camps', 'war-log', 'clan-recruitment'];
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const entry of entries) {
+          if (entry.isIntersecting) {
+            setActiveSection(entry.target.id);
           }
         }
-      }
-    };
+      },
+      { rootMargin: '-20% 0px -40% 0px', threshold: 0.05 }
+    );
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
+    sectionIds.forEach((id) => {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    });
 
     return () => {
       document.removeEventListener('click', handleGlobalClick);
-      window.removeEventListener('scroll', handleScroll);
+      observer.disconnect();
     };
   }, []);
 
   return (
-    <div className="w-full min-h-screen bg-background text-on-surface antialiased flex flex-col selection:bg-primary-container selection:text-on-primary-container">
+    <div className="relative w-full min-h-screen text-on-surface antialiased flex flex-col selection:bg-primary-container selection:text-on-primary-container overflow-x-hidden">
+      {/* GPU-composited Fixed Game Atmosphere Background */}
+      <div className="bg-game-atmosphere" />
+
+      {/* Clash of Clans Ambient Troop Watermark Layer */}
+      <TroopBackgroundLayer />
+
+      {/* Clash of Clans Intro Briefing Modal */}
+      <IntroModal isOpen={introOpen} onClose={handleCloseIntro} />
+
       {/* Citadel Top HUD Navigation */}
       <Navbar activeSection={activeSection} />
 
       {/* Main Village Grounds */}
-      <main className="w-full pt-24 bg-background flex-grow flex flex-col">
-        {/* Village Base Town Hall & Chief Narrative */}
+      <main className="relative z-10 w-full pt-16 sm:pt-20 flex-grow flex flex-col">
+        {/* Village Base Town Hall & Chief Narrative (Above fold, instant load) */}
         <HeroSection />
 
         {/* Barracks & Arcane Forge (Skill Matrix) */}
-        <BarracksSection />
+        <ScrollReveal yOffset={28}>
+          <BarracksSection />
+        </ScrollReveal>
 
         {/* Clan War Log & Battle Replays (Featured Projects) */}
-        <WarLogSection />
-
-        {/* Laboratory & Research Spells (Education & Masteries) */}
-
+        <ScrollReveal yOffset={28}>
+          <WarLogSection />
+        </ScrollReveal>
 
         {/* Guild Recruitment Outpost (Contact Missive & Resume) */}
-        <RecruitmentSection />
+        <ScrollReveal yOffset={28}>
+          <RecruitmentSection />
+        </ScrollReveal>
       </main>
 
       {/* Camp Quarters & Scout Outposts Footer */}
-      <Footer />
+      <ScrollReveal yOffset={20}>
+        <Footer />
+      </ScrollReveal>
     </div>
   );
 };
