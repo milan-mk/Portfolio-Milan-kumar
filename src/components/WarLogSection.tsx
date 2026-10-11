@@ -1,18 +1,18 @@
 import React from 'react';
-import { CAMPAIGN_PROJECTS } from '../data/portfolioData';
+import { CAMPAIGN_PROJECTS, CHIEF_INFO } from '../data/portfolioData';
 
 export const WarLogSection: React.FC = () => {
   const getPillStyles = (theme?: string) => {
     switch (theme) {
       case 'cyan':
-        return 'bg-cyan-500/20 text-cyan-300 border-cyan-400/50 hover:bg-cyan-500/30';
+        return 'bg-orange-500/20 text-orange-300 border-orange-400/50 hover:bg-orange-500/30';
       case 'amber':
         return 'bg-amber-500/20 text-amber-300 border-amber-400/50 hover:bg-amber-500/30';
       case 'purple':
         return 'bg-purple-500/20 text-purple-300 border-purple-400/50 hover:bg-purple-500/30';
       case 'emerald':
       default:
-        return 'bg-emerald-500/20 text-emerald-300 border-emerald-400/50 hover:bg-emerald-500/30';
+        return 'bg-red-500/20 text-red-300 border-red-400/50 hover:bg-red-500/30';
     }
   };
 
@@ -30,13 +30,67 @@ export const WarLogSection: React.FC = () => {
               Featured Engineering Battle Replays
             </h2>
           </div>
-          <div className="flex items-center gap-1 bg-surface-container px-2.5 py-1 rounded border border-surface-container-high self-start sm:self-auto shadow-[0_2px_0_#050811]">
+          <div className="flex items-center gap-1 bg-surface-container px-2.5 py-1 rounded border border-surface-container-high self-start sm:self-auto shadow-[0_2px_0_#070304]">
             <span className="material-symbols-outlined text-primary-container text-[16px] material-symbols-fill">star</span>
             <span className="material-symbols-outlined text-primary-container text-[16px] material-symbols-fill">star</span>
             <span className="material-symbols-outlined text-primary-container text-[16px] material-symbols-fill">star</span>
             <span className="font-label text-[10px] uppercase text-primary font-bold ml-1">
               Perfect Campaign Record
             </span>
+          </div>
+        </div>
+
+        {/* Active Village War Defense Layout Banner (TH10 Fortress Blueprint) */}
+        <div className="relative bg-surface-container rounded-2xl p-4 sm:p-5 border border-surface-container-highest/80 shadow-[0_8px_24px_rgba(0,0,0,0.6)] overflow-hidden flex flex-col md:flex-row items-center gap-5 animate-magma-glow">
+          <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-red-600/50 via-primary-container to-orange-500/50 shadow-[0_0_10px_rgba(234,88,12,0.5)]"></div>
+
+          {/* Base Layout Isometric Preview */}
+          <div className="relative w-36 h-36 sm:w-44 sm:h-44 shrink-0 rounded-xl bg-surface-container-lowest p-2 border border-secondary/40 shadow-inner group overflow-hidden flex items-center justify-center">
+            <img
+              src={CHIEF_INFO.th10BaseImg}
+              alt="Town Hall 10 Defense Layout"
+              className="w-full h-full object-contain rounded-lg drop-shadow-[0_4px_16px_rgba(234,88,12,0.6)] group-hover:scale-108 transition-transform duration-500"
+            />
+            <div className="absolute bottom-1.5 left-1.5 right-1.5 bg-surface-container-lowest/90 px-1.5 py-0.5 rounded text-[8px] font-label text-primary text-center border border-primary-container/30 uppercase font-bold tracking-wider">
+              TH10 Anti-3-Star Layout
+            </div>
+          </div>
+
+          {/* Defense Architecture Narrative */}
+          <div className="flex-1 flex flex-col gap-2">
+            <div className="flex flex-wrap items-center gap-2">
+              <span className="font-label text-[10px] uppercase tracking-wider text-primary-container bg-primary-container/15 px-2 py-0.5 rounded border border-primary-container/30 font-bold flex items-center gap-1">
+                <span className="material-symbols-outlined text-[14px]">shield</span>
+                Active Defense Fortress
+              </span>
+              <span className="font-label text-[10px] uppercase text-emerald-400 font-bold bg-emerald-500/10 px-2 py-0.5 rounded border border-emerald-500/20 flex items-center gap-1">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                0 Stars Conceded &bull; Perfect Defense Record
+              </span>
+            </div>
+
+            <h3 className="font-display font-black text-lg sm:text-xl uppercase text-on-surface">
+              Fortified Web Architecture Defense Grid
+            </h3>
+
+            <p className="font-body text-xs sm:text-sm text-on-surface-variant leading-relaxed">
+              Every production web system I build is engineered like this maxed Town Hall 10 layout: core state isolated on protected island containers, dual multi-target load balancers to incinerate traffic surges, and multi-layer firewall boundaries.
+            </p>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 pt-1">
+              <div className="bg-surface-container-lowest p-1.5 rounded flex items-center gap-2 border border-surface-container-high/40">
+                <span className="material-symbols-outlined text-primary-container text-[16px]">local_fire_department</span>
+                <span className="font-label text-[10px] text-on-surface uppercase font-bold">Multi-Inferno Core</span>
+              </div>
+              <div className="bg-surface-container-lowest p-1.5 rounded flex items-center gap-2 border border-surface-container-high/40">
+                <span className="material-symbols-outlined text-primary-container text-[16px]">adjust</span>
+                <span className="font-label text-[10px] text-on-surface uppercase font-bold">Triple X-Bow Sentry</span>
+              </div>
+              <div className="bg-surface-container-lowest p-1.5 rounded flex items-center gap-2 border border-surface-container-high/40">
+                <span className="material-symbols-outlined text-primary-container text-[16px]">verified_user</span>
+                <span className="font-label text-[10px] text-on-surface uppercase font-bold">Lava Wall Perimeter</span>
+              </div>
+            </div>
           </div>
         </div>
 

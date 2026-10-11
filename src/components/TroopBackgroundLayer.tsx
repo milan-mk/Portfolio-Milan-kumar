@@ -43,13 +43,13 @@ const FLOATING_TROOPS: FloatingTroopIcon[] = [
     reverse: true,
   },
   {
-    id: 'hero-edragon',
-    name: 'ELECTRO DRAGON',
-    role: 'Lightning Leviathan',
-    image: '/images/troops/electro_dragon.png',
+    id: 'hero-lavahound',
+    name: 'LAVA HOUND',
+    role: 'Magma Vanguard',
+    image: '/images/troops/lava_hound.png',
     top: '640px',
     right: '1.8%',
-    size: 110,
+    size: 115,
     rotation: 6,
     delay: '2.5s',
     duration: '7.0s',
@@ -69,13 +69,13 @@ const FLOATING_TROOPS: FloatingTroopIcon[] = [
     duration: '6.8s',
   },
   {
-    id: 'skills-yeti',
-    name: 'YETI',
-    role: 'Frost Neural Titan',
-    image: '/images/troops/yeti.png',
+    id: 'skills-golem-top',
+    name: 'GOLEM',
+    role: 'Molten Basalt Titan',
+    image: '/images/troops/golem.png',
     top: '1260px',
     right: '2%',
-    size: 100,
+    size: 105,
     rotation: 7,
     delay: '3.0s',
     duration: '7.4s',
@@ -121,10 +121,10 @@ const FLOATING_TROOPS: FloatingTroopIcon[] = [
     duration: '6.4s',
   },
   {
-    id: 'war-icehound',
-    name: 'ICE HOUND',
-    role: 'Subzero Tank',
-    image: '/images/troops/ice_hound.png',
+    id: 'war-lavapup',
+    name: 'LAVA HOUND',
+    role: 'Inferno Air Tank',
+    image: '/images/troops/lava_hound.png',
     top: '2500px',
     right: '2%',
     size: 110,
@@ -148,22 +148,22 @@ const FLOATING_TROOPS: FloatingTroopIcon[] = [
 
   // --- Guild Recruitment & Outposts ---
   {
-    id: 'recruit-lavahound',
-    name: 'LAVA HOUND',
-    role: 'Magma Shield',
-    image: '/images/troops/lava_hound.png',
+    id: 'recruit-wizard',
+    name: 'WIZARD',
+    role: 'Fire Arcane Scout',
+    image: '/images/troops/wizard.png',
     top: '3200px',
     right: '2%',
-    size: 112,
+    size: 110,
     rotation: 7,
     delay: '1.9s',
     duration: '7.2s',
   },
   {
-    id: 'recruit-lassi',
-    name: 'L.A.S.S.I',
-    role: 'Cyber Scout',
-    image: '/images/troops/lassi.png',
+    id: 'recruit-balloon',
+    name: 'BALLOON',
+    role: 'Heavy Air Sentry',
+    image: '/images/troops/balloon.png',
     top: '3560px',
     left: '1.5%',
     size: 100,
@@ -216,7 +216,7 @@ export const TroopBackgroundLayer: React.FC = () => {
                   src={troop.image}
                   alt={troop.name}
                   loading="lazy"
-                  className="w-full h-full object-contain opacity-40 sm:opacity-50 group-hover:opacity-95 transition-opacity duration-300 filter drop-shadow-[0_12px_22px_rgba(0,0,0,0.85)] drop-shadow-[0_0_14px_rgba(56,189,248,0.3)]"
+                  className="w-full h-full object-contain opacity-40 sm:opacity-50 group-hover:opacity-95 transition-opacity duration-300 filter drop-shadow-[0_12px_22px_rgba(0,0,0,0.85)] drop-shadow-[0_0_16px_rgba(234,88,12,0.45)]"
                 />
               </div>
 
