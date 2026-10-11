@@ -19,12 +19,12 @@ interface TourStep {
 
 const TOUR_STEPS: TourStep[] = [
   {
-    badge: 'Citadel Town Hall',
+    badge: 'Town Hall 10 Fortress',
     icon: 'fort',
     title: 'Welcome, Chief!',
     subtitle: 'Village Inspection Initiated',
-    description: `You have entered the tactical engineering citadel of ${CHIEF_INFO.name}. A Computer Science graduate and fresher developer ready to raid bottlenecks, defend production, and build resilient web systems.`,
-    highlightText: 'Level 1 Code Craftsman // Ready for Clan War',
+    description: `You have entered the tactical engineering fortress of ${CHIEF_INFO.name}. A Computer Science graduate and fresher developer ready to raid bottlenecks, defend production, and build resilient web systems.`,
+    highlightText: 'Town Hall 10 Master Builder // Ready for Clan War',
     avatarIcon: 'military_tech',
   },
   {

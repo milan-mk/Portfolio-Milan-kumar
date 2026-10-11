@@ -4,23 +4,23 @@ import { CHIEF_INFO } from '../data/portfolioData';
 export const HeroSection: React.FC = () => {
   return (
     <section id="citadel-base" className="relative w-full px-4 sm:px-6 py-6 sm:py-8 overflow-hidden">
-      {/* Atmospheric Background Gradients & Runes */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(14,165,233,0.18),rgba(8,13,26,0))]"></div>
+      {/* Atmospheric Background Gradients & Magma Runes */}
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(234,88,12,0.22),rgba(12,7,9,0))]"></div>
       <div className="absolute -right-32 -top-32 w-80 h-80 rounded-full bg-secondary/15 blur-3xl pointer-events-none"></div>
       <div className="absolute -left-32 top-40 w-80 h-80 rounded-full bg-primary-container/10 blur-3xl pointer-events-none"></div>
 
       <div className="max-w-[1040px] mx-auto flex flex-col gap-5">
-        {/* HERO / VILLAGE TOWN HALL SECTION */}
-        <div className="relative bg-surface-container rounded-xl shadow-[0_12px_28px_rgba(0,0,0,0.65),0_0_0_1px_rgba(56,189,248,0.15)] p-4 sm:p-6 overflow-hidden border border-surface-container-highest/60">
-          {/* Inner Stone Rim & Wood Texture Accent */}
-          <div className="absolute inset-0 bg-[radial-gradient(#263e6e_1px,transparent_1px)] [background-size:16px_16px] opacity-30 pointer-events-none"></div>
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-secondary/20 via-primary-container to-secondary/20"></div>
+        {/* HERO / VILLAGE TOWN HALL 10 SECTION */}
+        <div className="relative bg-surface-container rounded-xl shadow-[0_12px_28px_rgba(0,0,0,0.75),0_0_0_1px_rgba(234,88,12,0.25)] p-4 sm:p-6 overflow-hidden border border-surface-container-highest/60 animate-magma-glow">
+          {/* Inner Scorched Basalt Rim & Magma Texture Accent */}
+          <div className="absolute inset-0 bg-[radial-gradient(#3a1f26_1px,transparent_1px)] [background-size:16px_16px] opacity-35 pointer-events-none"></div>
+          <div className="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-red-600/40 via-primary-container to-orange-500/40 shadow-[0_0_12px_rgba(234,88,12,0.6)]"></div>
 
           <div className="relative grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
             {/* Left Column: Hero Narrative & Badges */}
             <div className="lg:col-span-7 flex flex-col gap-3.5">
               {/* Overline Wooden Plaque Token */}
-              <div className="inline-flex items-center gap-1.5 self-start px-2.5 py-0.5 rounded bg-surface-container-highest shadow-[0_2px_0_#050811] border border-surface-container-high/60">
+              <div className="inline-flex items-center gap-1.5 self-start px-2.5 py-0.5 rounded bg-surface-container-highest shadow-[0_2px_0_#070304] border border-surface-container-high/60">
                 <span className="material-symbols-outlined text-primary-container text-[16px]">fort</span>
                 <span className="font-label text-[11px] uppercase tracking-widest text-primary font-bold">
                   {CHIEF_INFO.craftsmanTitle}
@@ -31,7 +31,7 @@ export const HeroSection: React.FC = () => {
               <div className="flex flex-col gap-1">
                 <h1 className="font-display text-3xl sm:text-4xl lg:text-[42px] font-black uppercase text-on-surface tracking-tight leading-[1.12]">
                   Chief Builder of{' '}
-                  <span className="text-primary-container drop-shadow-[0_2px_10px_rgba(245,158,11,0.4)]">
+                  <span className="text-primary-container drop-shadow-[0_2px_12px_rgba(234,88,12,0.55)]">
                     Resilient
                   </span>{' '}
                   Web Systems
@@ -43,15 +43,15 @@ export const HeroSection: React.FC = () => {
 
               {/* Village Key Stat Badges */}
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 pt-1">
-                <div className="bg-surface-container-low p-2 rounded flex flex-col gap-0.5 shadow-[0_2px_0_#050811] border border-surface-container-high/40">
-                  <span className="font-label text-[10px] uppercase text-outline font-bold">Citadel Rank</span>
+                <div className="bg-surface-container-low p-2 rounded flex flex-col gap-0.5 shadow-[0_2px_0_#070304] border border-surface-container-high/40">
+                  <span className="font-label text-[10px] uppercase text-outline font-bold">Town Hall Rank</span>
                   <span className="font-display font-bold text-base text-primary flex items-center gap-1">
                     <span className="material-symbols-outlined text-primary-container text-[16px]">military_tech</span>
                     {CHIEF_INFO.citadelRank}
                   </span>
                 </div>
 
-                <div className="bg-surface-container-low p-2 rounded flex flex-col gap-0.5 shadow-[0_2px_0_#050811] border border-surface-container-high/40">
+                <div className="bg-surface-container-low p-2 rounded flex flex-col gap-0.5 shadow-[0_2px_0_#070304] border border-surface-container-high/40">
                   <span className="font-label text-[10px] uppercase text-outline font-bold">Craft Stars</span>
                   <span className="font-display font-bold text-base text-primary flex items-center gap-1">
                     <span className="material-symbols-outlined text-primary-fixed-dim text-[16px] material-symbols-fill">star</span>
@@ -59,7 +59,7 @@ export const HeroSection: React.FC = () => {
                   </span>
                 </div>
 
-                <div className="bg-surface-container-low p-2 rounded flex flex-col gap-0.5 shadow-[0_2px_0_#050811] border border-surface-container-high/40">
+                <div className="bg-surface-container-low p-2 rounded flex flex-col gap-0.5 shadow-[0_2px_0_#070304] border border-surface-container-high/40">
                   <span className="font-label text-[10px] uppercase text-outline font-bold">Guild Castle</span>
                   <span className="font-display font-bold text-base text-primary flex items-center gap-1">
                     <span className="material-symbols-outlined text-primary-container text-[16px]">verified</span>
@@ -67,7 +67,7 @@ export const HeroSection: React.FC = () => {
                   </span>
                 </div>
 
-                <div className="bg-surface-container-low p-2 rounded flex flex-col gap-0.5 shadow-[0_2px_0_#050811] border border-surface-container-high/40">
+                <div className="bg-surface-container-low p-2 rounded flex flex-col gap-0.5 shadow-[0_2px_0_#070304] border border-surface-container-high/40">
                   <span className="font-label text-[10px] uppercase text-outline font-bold">Deploy Period</span>
                   <span className="font-display font-bold text-base text-primary flex items-center gap-1">
                     <span className="material-symbols-outlined text-primary-container text-[16px]">bolt</span>
@@ -103,7 +103,7 @@ export const HeroSection: React.FC = () => {
               <div className="relative w-full max-w-[280px] aspect-square rounded-2xl bg-surface-container-lowest p-3 sm:p-4 flex flex-col items-center justify-center shadow-[inset_0_4px_12px_rgba(0,0,0,0.8),0_10px_20px_rgba(0,0,0,0.7)] border border-surface-container-high/50">
                 {/* Inner Crest Shield Graphic */}
                 <img
-                  className="w-36 h-36 object-contain drop-shadow-[0_8px_18px_rgba(14,165,233,0.35)] hover:rotate-2 transition-transform duration-300"
+                  className="w-36 h-36 object-contain drop-shadow-[0_8px_20px_rgba(234,88,12,0.45)] hover:rotate-2 transition-transform duration-300"
                   alt="Clash Crest Shield"
                   src={CHIEF_INFO.crestShieldImg}
                 />
