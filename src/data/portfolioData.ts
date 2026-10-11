@@ -16,7 +16,9 @@ export const CHIEF_INFO = {
   builderStatus: '1 / 1 BUSY',
   builderTask: 'Forging Full-Stack Lava Systems',
   emblemImg: 'https://lh3.googleusercontent.com/aida-public/AB6AXuB2Xi0XkT6DH7fcgiKWuCYkUstWjBt585nDeqQn4JANV1DjFdVLOPDjxFkbR-4LX_tHzl6XuonoUbHgl4WV_cPHcoBc3N4k1O2xr8DlBz0k0-TUeQ0KcBPCX7Oi6_wnToiqSccq6k174l_fD9kH5-tJp8hZJdwJSKmhDX7oDvA2LgNyXJoWbDkQcp-vZ-ZLhYhQtRGG8lfR8CYd9mwrd2OT65o-4nH6Yp_7dn3eL3O0aswaEHL60ztf_w',
-  crestShieldImg: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDRdCjQd8-5LA-HxyM04EElLYCfODD4T8qnx38mWJ3J8vPMXzpoKTQWkP9XRAS2dd9982TZ3HkoF-_-WAWUCY8mC9hqI2E43dDW0a0pFJJXGnPt9ZA_fGTox2AUA17JK4noaS9a12OQDeCxjGvbCJxRr8w_u3OUpndRM9KI7tQdEmYQvA8DMtFOph0h6gkKk8hbFK4eb7fv3uvVhA6vJRUfU0bNzRB6v5tA8Uco9FcC2w4or21007s1Yw',
+  crestShieldImg: '/images/builder_hall.png',
+  builderHallImg: '/images/builder_hall.png',
+  th10BaseImg: '/images/th10_base.png',
   avatarImg: 'https://lh3.googleusercontent.com/aida-public/AB6AXuDP7gkrSVZKwTNIXCGxWCLWeXJ9bA4U3c6fJw5HsED5jZebS29Y6yJI9v0s-lAntFKRZ01BFx58xugYMc__u4-t14BFpnJCeqSAwFKT_AO_1CMdnbLZRvKvBzmpSD-T1avbOjQmOhTwD9IjczjHKDhT_mfARS0IYb-0pQKoBLeIExXLqZt-YOa78H2OpQlmRT1jzJkmXKcFTs0DUl9rOZ7GM5YIdG8nb74K9ODjYuiNNvx0yem4gLXCUA',
 };
 

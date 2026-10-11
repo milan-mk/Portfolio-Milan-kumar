@@ -9,6 +9,7 @@ import { RecruitmentSection } from './components/RecruitmentSection';
 import { ScrollReveal } from './components/ScrollReveal';
 import { TroopBackgroundLayer } from './components/TroopBackgroundLayer';
 import { WarLogSection } from './components/WarLogSection';
+import { villageAudio } from './utils/soundEffects';
 
 export const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState('citadel-base');
@@ -16,10 +17,11 @@ export const App: React.FC = () => {
 
   const handleCloseIntro = () => {
     setIntroOpen(false);
+    villageAudio.playHorn();
   };
 
   useEffect(() => {
-    // Tactile Click scale feedback for pushable game elements
+    // Tactile Click scale feedback and sound effects for pushable game elements
     const handleGlobalClick = (e: MouseEvent) => {
       const target = (e.target as HTMLElement).closest('button, a[href^="#"]');
       if (target && target instanceof HTMLElement) {
@@ -27,6 +29,16 @@ export const App: React.FC = () => {
         setTimeout(() => {
           target.style.transform = '';
         }, 120);
+
+        const href = target.getAttribute('href') || '';
+        const text = (target.textContent || '').toLowerCase();
+        if (href.includes('war-log') || text.includes('expedition') || text.includes('inspect')) {
+          villageAudio.playHorn();
+        } else if (href.includes('clan-recruitment') || text.includes('hire') || text.includes('summon')) {
+          villageAudio.playGold();
+        } else {
+          villageAudio.playTap();
+        }
       }
     };
 
