@@ -21,7 +21,7 @@ const FLOATING_TROOPS: FloatingTroopIcon[] = [
     id: 'hero-builder',
     name: 'BUILDER',
     role: 'Chief Craftsman',
-    image: '/images/troops/builder.png',
+    image: '/images/troops/builder.webp',
     top: '90px',
     right: '2%',
     size: 105,
@@ -33,7 +33,7 @@ const FLOATING_TROOPS: FloatingTroopIcon[] = [
     id: 'hero-archer',
     name: 'SUPER ARCHER',
     role: 'Precision Scout',
-    image: '/images/troops/super_archer.png',
+    image: '/images/troops/super_archer.webp',
     top: '360px',
     left: '1.5%',
     size: 96,
@@ -46,7 +46,7 @@ const FLOATING_TROOPS: FloatingTroopIcon[] = [
     id: 'hero-lavahound',
     name: 'LAVA HOUND',
     role: 'Magma Vanguard',
-    image: '/images/troops/lava_hound.png',
+    image: '/images/troops/lava_hound.webp',
     top: '640px',
     right: '1.8%',
     size: 115,
@@ -60,7 +60,7 @@ const FLOATING_TROOPS: FloatingTroopIcon[] = [
     id: 'skills-wizard',
     name: 'WIZARD',
     role: 'Fire Arcane Core',
-    image: '/images/troops/wizard.png',
+    image: '/images/troops/wizard.webp',
     top: '960px',
     left: '1.5%',
     size: 105,
@@ -72,7 +72,7 @@ const FLOATING_TROOPS: FloatingTroopIcon[] = [
     id: 'skills-golem-top',
     name: 'GOLEM',
     role: 'Molten Basalt Titan',
-    image: '/images/troops/golem.png',
+    image: '/images/troops/golem.webp',
     top: '1260px',
     right: '2%',
     size: 105,
@@ -85,7 +85,7 @@ const FLOATING_TROOPS: FloatingTroopIcon[] = [
     id: 'skills-golem',
     name: 'GOLEM',
     role: 'Ground Colossus',
-    image: '/images/troops/golem.png',
+    image: '/images/troops/golem.webp',
     top: '1560px',
     left: '1.5%',
     size: 108,
@@ -97,7 +97,7 @@ const FLOATING_TROOPS: FloatingTroopIcon[] = [
     id: 'skills-balloon',
     name: 'BALLOON',
     role: 'Air Bombardment',
-    image: '/images/troops/balloon.png',
+    image: '/images/troops/balloon.webp',
     top: '1860px',
     right: '2%',
     size: 96,
@@ -112,7 +112,7 @@ const FLOATING_TROOPS: FloatingTroopIcon[] = [
     id: 'war-hogrider',
     name: 'HOG RIDER',
     role: 'Fast Raid Sentry',
-    image: '/images/troops/hog_rider.png',
+    image: '/images/troops/hog_rider.webp',
     top: '2180px',
     left: '1.5%',
     size: 106,
@@ -124,7 +124,7 @@ const FLOATING_TROOPS: FloatingTroopIcon[] = [
     id: 'war-lavapup',
     name: 'LAVA HOUND',
     role: 'Inferno Air Tank',
-    image: '/images/troops/lava_hound.png',
+    image: '/images/troops/lava_hound.webp',
     top: '2500px',
     right: '2%',
     size: 110,
@@ -137,7 +137,7 @@ const FLOATING_TROOPS: FloatingTroopIcon[] = [
     id: 'war-pekka',
     name: 'P.E.K.K.A',
     role: 'Titan Vanguard',
-    image: '/images/troops/pekka.png',
+    image: '/images/troops/pekka.webp',
     top: '2840px',
     left: '1.5%',
     size: 115,
@@ -151,7 +151,7 @@ const FLOATING_TROOPS: FloatingTroopIcon[] = [
     id: 'recruit-wizard',
     name: 'WIZARD',
     role: 'Fire Arcane Scout',
-    image: '/images/troops/wizard.png',
+    image: '/images/troops/wizard.webp',
     top: '3200px',
     right: '2%',
     size: 110,
@@ -163,7 +163,7 @@ const FLOATING_TROOPS: FloatingTroopIcon[] = [
     id: 'recruit-balloon',
     name: 'BALLOON',
     role: 'Heavy Air Sentry',
-    image: '/images/troops/balloon.png',
+    image: '/images/troops/balloon.webp',
     top: '3560px',
     left: '1.5%',
     size: 100,
@@ -174,7 +174,8 @@ const FLOATING_TROOPS: FloatingTroopIcon[] = [
   },
 ];
 
-export const TroopBackgroundLayer: React.FC = () => {
+// Memoised: FLOATING_TROOPS is a module constant — this component never needs to re-render.
+export const TroopBackgroundLayer: React.FC = React.memo(() => {
   return (
     <div
       className="absolute inset-0 pointer-events-none overflow-hidden z-0 select-none contain-paint transform-gpu"
@@ -216,6 +217,9 @@ export const TroopBackgroundLayer: React.FC = () => {
                   src={troop.image}
                   alt={troop.name}
                   loading="lazy"
+                  decoding="async"
+                  width={troop.size}
+                  height={troop.size}
                   className="w-full h-full object-contain opacity-40 sm:opacity-50 group-hover:opacity-95 transition-opacity duration-300 filter drop-shadow-[0_12px_22px_rgba(0,0,0,0.85)] drop-shadow-[0_0_16px_rgba(234,88,12,0.45)]"
                 />
               </div>
@@ -235,4 +239,5 @@ export const TroopBackgroundLayer: React.FC = () => {
       })}
     </div>
   );
-};
+});
+TroopBackgroundLayer.displayName = 'TroopBackgroundLayer';

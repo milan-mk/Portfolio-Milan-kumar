@@ -7,6 +7,14 @@ interface NavbarProps {
   activeSection: string;
 }
 
+// Static data — defined outside the component so it is never recreated on render.
+const NAV_LINKS = [
+  { name: 'Base', href: '#citadel-base', id: 'citadel-base', icon: 'fort' },
+  { name: 'Skills', href: '#army-camps', id: 'army-camps', icon: 'swords' },
+  { name: 'Projects Log', href: '#war-log', id: 'war-log', icon: 'military_tech' },
+  { name: 'Summon CV', href: '#clan-recruitment', id: 'clan-recruitment', icon: 'mark_email_read' },
+];
+
 export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -26,12 +34,7 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
-    { name: 'Base', href: '#citadel-base', id: 'citadel-base', icon: 'fort' },
-    { name: 'Skills', href: '#army-camps', id: 'army-camps', icon: 'swords' },
-    { name: 'Projects Log', href: '#war-log', id: 'war-log', icon: 'military_tech' },
-    { name: 'Summon CV', href: '#clan-recruitment', id: 'clan-recruitment', icon: 'mark_email_read' },
-  ];
+  const navLinks = NAV_LINKS;
 
   return (
     <header
@@ -43,10 +46,14 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
       <div className="h-16 sm:h-20 w-full max-w-[1360px] mx-auto px-3 sm:px-5 lg:px-6 flex items-center justify-between gap-2 sm:gap-3">
         {/* Chief Emblem & Crest */}
         <a href="#citadel-base" className="flex items-center gap-2 shrink-0 group">
+          {/* emblem — above-fold, fetchPriority=high so it doesn't delay LCP */}
           <img
             alt="Clash Dev Emblem Logo"
             className="h-8 sm:h-9 w-auto object-contain transition-transform group-hover:scale-105"
             src={CHIEF_INFO.emblemImg}
+            width={36}
+            height={36}
+            fetchPriority="high"
           />
           <div className="flex flex-col">
             <div className="flex items-center gap-1">
@@ -147,10 +154,13 @@ export const Navbar: React.FC<NavbarProps> = ({ activeSection }) => {
           </a>
 
           {/* Chief Avatar Icon (Hidden until XL to preserve spacing) */}
+          {/* Chief Avatar — always visible on xl+, no fetchPriority needed */}
           <img
             alt={CHIEF_INFO.name}
             className="hidden xl:block w-7 h-7 sm:w-8 sm:h-8 rounded-full object-cover border-2 border-primary-container/70 shadow-[0_0_8px_rgba(245,158,11,0.4)] shrink-0"
             src={CHIEF_INFO.avatarImg}
+            width={32}
+            height={32}
           />
 
           {/* Mobile menu toggle */}
