@@ -1,22 +1,20 @@
 import React from 'react';
 import { CAMPAIGN_PROJECTS, CHIEF_INFO } from '../data/portfolioData';
 
-// Pure helper — no closure dependencies, safe outside the component.
-const getPillStyles = (theme?: string) => {
-  switch (theme) {
-    case 'cyan':
-      return 'bg-orange-500/20 text-orange-300 border-orange-400/50 hover:bg-orange-500/30';
-    case 'amber':
-      return 'bg-amber-500/20 text-amber-300 border-amber-400/50 hover:bg-amber-500/30';
-    case 'purple':
-      return 'bg-purple-500/20 text-purple-300 border-purple-400/50 hover:bg-purple-500/30';
-    case 'emerald':
-    default:
-      return 'bg-red-500/20 text-red-300 border-red-400/50 hover:bg-red-500/30';
-  }
-};
-
 export const WarLogSection: React.FC = () => {
+  const getPillStyles = (theme?: string) => {
+    switch (theme) {
+      case 'cyan':
+        return 'bg-orange-500/20 text-orange-300 border-orange-400/50 hover:bg-orange-500/30';
+      case 'amber':
+        return 'bg-amber-500/20 text-amber-300 border-amber-400/50 hover:bg-amber-500/30';
+      case 'purple':
+        return 'bg-purple-500/20 text-purple-300 border-purple-400/50 hover:bg-purple-500/30';
+      case 'emerald':
+      default:
+        return 'bg-red-500/20 text-red-300 border-red-400/50 hover:bg-red-500/30';
+    }
+  };
 
   return (
     <section id="war-log" className="w-full px-4 sm:px-6 py-8 sm:py-12 lg:py-14">
@@ -51,10 +49,6 @@ export const WarLogSection: React.FC = () => {
             <img
               src={CHIEF_INFO.th10BaseImg}
               alt="Town Hall 10 Defense Layout"
-              width={176}
-              height={176}
-              loading="lazy"
-              decoding="async"
               className="w-full h-full object-contain rounded-lg drop-shadow-[0_4px_16px_rgba(234,88,12,0.6)] group-hover:scale-108 transition-transform duration-500"
             />
             <div className="absolute bottom-1.5 left-1.5 right-1.5 bg-surface-container-lowest/90 px-1.5 py-0.5 rounded text-[8px] font-label text-primary text-center border border-primary-container/30 uppercase font-bold tracking-wider">
@@ -117,10 +111,6 @@ export const WarLogSection: React.FC = () => {
                     src={project.troopImage}
                     alt=""
                     aria-hidden="true"
-                    width={176}
-                    height={176}
-                    loading="lazy"
-                    decoding="async"
                     className="absolute -right-6 -bottom-6 w-44 h-44 object-contain opacity-5 pointer-events-none filter grayscale contrast-200 group-hover:opacity-8 transition-opacity duration-300"
                   />
                 )}
@@ -134,11 +124,8 @@ export const WarLogSection: React.FC = () => {
                         <img
                           src={project.troopImage}
                           alt={project.troopName || project.title}
-                          width={64}
-                          height={64}
-                          loading="lazy"
-                          decoding="async"
                           className="w-full h-full object-contain filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.6)]"
+                          loading="lazy"
                         />
                       </div>
                     ) : (
@@ -208,10 +195,7 @@ export const WarLogSection: React.FC = () => {
                     className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                     alt={project.title}
                     src={project.image}
-                    width={600}
-                    height={144}
                     loading="lazy"
-                    decoding="async"
                   />
                   <div className="absolute bottom-1.5 left-1.5 px-2 py-0.5 rounded bg-surface-container-lowest/90 backdrop-blur font-label text-[10px] font-bold text-on-surface border border-surface-container-high shadow-xs">
                     {project.badgeHighlight}

@@ -2,70 +2,65 @@ import React, { useState } from 'react';
 import { SKILL_CATEGORIES } from '../data/portfolioData';
 import { TechIcon } from './TechIcon';
 
-// Computed once at module load — SKILL_CATEGORIES is a module-level constant.
-const TOTAL_UNITS = SKILL_CATEGORIES.reduce((acc, cat) => acc + cat.skills.length, 0);
-
-// Pure helper — no closure dependencies, safe to live outside the component.
-const getElementStyles = (badge?: string) => {
-  switch (badge) {
-    case 'FIRE':
-      return {
-        badgeBg: 'bg-orange-500/20 text-orange-400 border-orange-500/40',
-        borderGlow: 'hover:border-orange-500/60 hover:shadow-[0_0_24px_rgba(249,115,22,0.18)]',
-        pillHover: 'hover:border-orange-500/60 hover:text-orange-300',
-        dotColor: 'bg-orange-400',
-      };
-    case 'ELECTRIC':
-      return {
-        badgeBg: 'bg-amber-400/20 text-amber-300 border-amber-400/40',
-        borderGlow: 'hover:border-amber-400/60 hover:shadow-[0_0_24px_rgba(251,191,36,0.18)]',
-        pillHover: 'hover:border-amber-400/60 hover:text-amber-200',
-        dotColor: 'bg-amber-400',
-      };
-    case 'MAGMA':
-      return {
-        badgeBg: 'bg-red-500/20 text-red-400 border-red-500/40',
-        borderGlow: 'hover:border-red-500/60 hover:shadow-[0_0_24px_rgba(239,68,68,0.18)]',
-        pillHover: 'hover:border-red-500/60 hover:text-red-300',
-        dotColor: 'bg-red-400',
-      };
-    case 'PSYCHIC':
-      return {
-        badgeBg: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
-        borderGlow: 'hover:border-purple-500/60 hover:shadow-[0_0_24px_rgba(168,85,247,0.18)]',
-        pillHover: 'hover:border-purple-500/60 hover:text-purple-300',
-        dotColor: 'bg-purple-400',
-      };
-    case 'FROST':
-      return {
-        badgeBg: 'bg-cyan-500/20 text-cyan-300 border-cyan-400/40',
-        borderGlow: 'hover:border-cyan-400/60 hover:shadow-[0_0_24px_rgba(6,182,212,0.18)]',
-        pillHover: 'hover:border-cyan-400/60 hover:text-cyan-200',
-        dotColor: 'bg-cyan-400',
-      };
-    case 'GROUND':
-    default:
-      return {
-        badgeBg: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
-        borderGlow: 'hover:border-emerald-500/60 hover:shadow-[0_0_24px_rgba(16,185,129,0.18)]',
-        pillHover: 'hover:border-emerald-500/60 hover:text-emerald-300',
-        dotColor: 'bg-emerald-400',
-      };
-  }
-};
-
 export const BarracksSection: React.FC = () => {
   const [activeCategory, setActiveCategory] = useState<string>('all');
   const [hoveredSkill, setHoveredSkill] = useState<string | null>(null);
 
-  const totalUnits = TOTAL_UNITS;
+  const totalUnits = SKILL_CATEGORIES.reduce((acc, cat) => acc + cat.skills.length, 0);
 
   const displayedCategories =
     activeCategory === 'all'
       ? SKILL_CATEGORIES
       : SKILL_CATEGORIES.filter((cat) => cat.id === activeCategory);
 
-
+  // Elemental color map for card borders, badges and glows
+  const getElementStyles = (badge?: string) => {
+    switch (badge) {
+      case 'FIRE':
+        return {
+          badgeBg: 'bg-orange-500/20 text-orange-400 border-orange-500/40',
+          borderGlow: 'hover:border-orange-500/60 hover:shadow-[0_0_24px_rgba(249,115,22,0.18)]',
+          pillHover: 'hover:border-orange-500/60 hover:text-orange-300',
+          dotColor: 'bg-orange-400',
+        };
+      case 'ELECTRIC':
+        return {
+          badgeBg: 'bg-amber-400/20 text-amber-300 border-amber-400/40',
+          borderGlow: 'hover:border-amber-400/60 hover:shadow-[0_0_24px_rgba(251,191,36,0.18)]',
+          pillHover: 'hover:border-amber-400/60 hover:text-amber-200',
+          dotColor: 'bg-amber-400',
+        };
+      case 'MAGMA':
+        return {
+          badgeBg: 'bg-red-500/20 text-red-400 border-red-500/40',
+          borderGlow: 'hover:border-red-500/60 hover:shadow-[0_0_24px_rgba(239,68,68,0.18)]',
+          pillHover: 'hover:border-red-500/60 hover:text-red-300',
+          dotColor: 'bg-red-400',
+        };
+      case 'PSYCHIC':
+        return {
+          badgeBg: 'bg-purple-500/20 text-purple-300 border-purple-500/40',
+          borderGlow: 'hover:border-purple-500/60 hover:shadow-[0_0_24px_rgba(168,85,247,0.18)]',
+          pillHover: 'hover:border-purple-500/60 hover:text-purple-300',
+          dotColor: 'bg-purple-400',
+        };
+      case 'FROST':
+        return {
+          badgeBg: 'bg-cyan-500/20 text-cyan-300 border-cyan-400/40',
+          borderGlow: 'hover:border-cyan-400/60 hover:shadow-[0_0_24px_rgba(6,182,212,0.18)]',
+          pillHover: 'hover:border-cyan-400/60 hover:text-cyan-200',
+          dotColor: 'bg-cyan-400',
+        };
+      case 'GROUND':
+      default:
+        return {
+          badgeBg: 'bg-emerald-500/20 text-emerald-300 border-emerald-500/40',
+          borderGlow: 'hover:border-emerald-500/60 hover:shadow-[0_0_24px_rgba(16,185,129,0.18)]',
+          pillHover: 'hover:border-emerald-500/60 hover:text-emerald-300',
+          dotColor: 'bg-emerald-400',
+        };
+    }
+  };
 
   return (
     <section id="army-camps" className="w-full px-4 sm:px-6 py-8 sm:py-12 lg:py-14">
@@ -120,10 +115,6 @@ export const BarracksSection: React.FC = () => {
                     src={cat.troopImage}
                     alt={cat.troopName || cat.name}
                     className="w-5 h-5 object-contain"
-                    width={20}
-                    height={20}
-                    loading="lazy"
-                    decoding="async"
                   />
                 )}
                 <span>{cat.elementBadge || cat.name}</span>
@@ -152,10 +143,7 @@ export const BarracksSection: React.FC = () => {
                         src={category.troopImage}
                         alt={category.troopName || category.name}
                         className="w-full h-full object-contain filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.6)]"
-                        width={56}
-                        height={56}
                         loading="lazy"
-                        decoding="async"
                       />
                     ) : (
                       <span className="material-symbols-outlined text-[24px] text-secondary">

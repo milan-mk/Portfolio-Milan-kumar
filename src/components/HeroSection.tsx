@@ -136,9 +136,6 @@ export const HeroSection: React.FC = () => {
                       className="w-44 h-44 object-contain drop-shadow-[0_10px_22px_rgba(234,88,12,0.6)] group-hover:scale-105 group-hover:-translate-y-1 transition-all duration-300"
                       alt="Builder Hall Level 10"
                       src={CHIEF_INFO.builderHallImg}
-                      width={176}
-                      height={176}
-                      fetchPriority="high"
                     />
                     <div className="absolute bottom-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity bg-surface-container-lowest/90 px-1.5 py-0.5 rounded text-[9px] font-label text-primary border border-primary-container/30">
                       Click to switch
@@ -154,10 +151,6 @@ export const HeroSection: React.FC = () => {
                       className="w-full h-full object-contain rounded-lg drop-shadow-[0_8px_18px_rgba(234,88,12,0.55)] group-hover:scale-105 transition-all duration-300"
                       alt="Town Hall 10 War Base Layout"
                       src={CHIEF_INFO.th10BaseImg}
-                      width={220}
-                      height={220}
-                      loading="lazy"
-                      decoding="async"
                     />
                     <div className="absolute inset-0 bg-black/55 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex flex-col items-center justify-center gap-1 text-primary text-xs font-display font-bold uppercase tracking-wider backdrop-blur-[1px]">
                       <span className="material-symbols-outlined text-[22px] text-primary-container">zoom_in</span>
@@ -254,10 +247,6 @@ export const HeroSection: React.FC = () => {
               <img
                 src={CHIEF_INFO.th10BaseImg}
                 alt="TH10 Active War Base Map"
-                width={340}
-                height={340}
-                loading="lazy"
-                decoding="async"
                 className="w-full h-full object-contain rounded-lg drop-shadow-[0_8px_20px_rgba(234,88,12,0.5)] group-hover:scale-105 transition-transform duration-500"
               />
               <div className="absolute top-3 left-3 bg-surface-container-lowest/90 px-2 py-0.5 rounded font-label text-[9px] uppercase tracking-wider text-primary border border-primary-container/40 flex items-center gap-1 shadow-md">
