@@ -1,15 +1,31 @@
-import React, { useEffect, useState } from 'react';
-import { BarracksSection } from './components/BarracksSection';
-import { Footer } from './components/Footer';
+import React, { useEffect, useState, lazy, Suspense } from 'react';
 import { HeroSection } from './components/HeroSection';
 import { IntroModal } from './components/IntroModal';
-//import { LaboratorySection } from './components/LaboratorySection';
 import { Navbar } from './components/Navbar';
-import { RecruitmentSection } from './components/RecruitmentSection';
 import { ScrollReveal } from './components/ScrollReveal';
 import { TroopBackgroundLayer } from './components/TroopBackgroundLayer';
-import { WarLogSection } from './components/WarLogSection';
 import { villageAudio } from './utils/soundEffects';
+
+// Below-fold sections — lazy-loaded so the initial JS bundle is smaller.
+// Each fallback reserves the section's approximate height to prevent layout shift.
+const BarracksSection = lazy(() =>
+  import('./components/BarracksSection').then((m) => ({ default: m.BarracksSection }))
+);
+const WarLogSection = lazy(() =>
+  import('./components/WarLogSection').then((m) => ({ default: m.WarLogSection }))
+);
+const RecruitmentSection = lazy(() =>
+  import('./components/RecruitmentSection').then((m) => ({ default: m.RecruitmentSection }))
+);
+const Footer = lazy(() =>
+  import('./components/Footer').then((m) => ({ default: m.Footer }))
+);
+
+// Minimal skeleton shown while a lazy section is loading.
+// Uses the same bg colour as the page so the height reservation is invisible.
+const SectionSkeleton: React.FC<{ minHeight?: string }> = ({ minHeight = '400px' }) => (
+  <div style={{ minHeight }} aria-hidden="true" />
+);
 
 export const App: React.FC = () => {
   const [activeSection, setActiveSection] = useState('citadel-base');
@@ -88,27 +104,36 @@ export const App: React.FC = () => {
         <HeroSection />
 
         {/* Barracks & Arcane Forge (Skill Matrix) */}
-        <ScrollReveal yOffset={28}>
-          <BarracksSection />
-        </ScrollReveal>
+        <Suspense fallback={<SectionSkeleton minHeight="600px" />}>
+          <ScrollReveal yOffset={28}>
+            <BarracksSection />
+          </ScrollReveal>
+        </Suspense>
 
         {/* Clan War Log & Battle Replays (Featured Projects) */}
-        <ScrollReveal yOffset={28}>
-          <WarLogSection />
-        </ScrollReveal>
+        <Suspense fallback={<SectionSkeleton minHeight="800px" />}>
+          <ScrollReveal yOffset={28}>
+            <WarLogSection />
+          </ScrollReveal>
+        </Suspense>
 
         {/* Guild Recruitment Outpost (Contact Missive & Resume) */}
-        <ScrollReveal yOffset={28}>
-          <RecruitmentSection />
-        </ScrollReveal>
+        <Suspense fallback={<SectionSkeleton minHeight="500px" />}>
+          <ScrollReveal yOffset={28}>
+            <RecruitmentSection />
+          </ScrollReveal>
+        </Suspense>
       </main>
 
       {/* Camp Quarters & Scout Outposts Footer */}
-      <ScrollReveal yOffset={20}>
-        <Footer />
-      </ScrollReveal>
+      <Suspense fallback={<SectionSkeleton minHeight="200px" />}>
+        <ScrollReveal yOffset={20}>
+          <Footer />
+        </ScrollReveal>
+      </Suspense>
     </div>
   );
 };
 
 export default App;
+

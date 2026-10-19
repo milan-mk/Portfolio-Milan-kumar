@@ -150,6 +150,8 @@ export const IntroModal: React.FC<IntroModalProps> = ({ isOpen, onClose }) => {
                   <img
                     src={CHIEF_INFO.avatarImg}
                     alt={CHIEF_INFO.name}
+                    width={64}
+                    height={64}
                     className="w-16 h-16 rounded-full object-cover border-2 border-primary-container shadow-[0_4px_12px_rgba(0,0,0,0.6)]"
                   />
                   <div className="absolute -bottom-1 -right-1 w-6 h-6 rounded-full bg-surface-container-highest border border-primary-container flex items-center justify-center">
