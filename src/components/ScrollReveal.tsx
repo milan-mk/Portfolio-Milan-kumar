@@ -18,14 +18,13 @@ export const ScrollReveal: React.FC<ScrollRevealProps> = ({
     <motion.div
       initial={{ opacity: 0, y: yOffset }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.08, margin: '0px 0px -40px 0px' }}
+      viewport={{ once: true, amount: 0.05 }}
       transition={{
         duration: 0.5,
         delay,
         ease: [0.25, 1, 0.5, 1], // Lightweight GPU-composited cubic bezier
       }}
-      style={{ willChange: 'transform, opacity' }}
-      className={`w-full transform-gpu ${className}`}
+      className={`w-full ${className}`}
     >
       {children}
     </motion.div>

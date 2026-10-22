@@ -103,7 +103,7 @@ export const WarLogSection: React.FC = () => {
             return (
               <div
                 key={project.id}
-                className="relative bg-surface-container/95 backdrop-blur-xs rounded-2xl p-5 sm:p-6 flex flex-col justify-between gap-4 shadow-[0_8px_24px_rgba(0,0,0,0.55),0_0_0_1px_rgba(255,255,255,0.06)] border border-surface-container-highest/80 overflow-hidden group hover:border-secondary/60 hover:-translate-y-1 transition-all duration-300"
+                className="relative bg-surface-container rounded-2xl p-5 sm:p-6 flex flex-col justify-between gap-4 shadow-[0_8px_24px_rgba(0,0,0,0.55),0_0_0_1px_rgba(255,255,255,0.06)] border border-surface-container-highest/80 overflow-hidden group hover:border-secondary/60 hover:-translate-y-1 transition-all duration-300"
               >
                 {/* Background Watermark Sprite (like silhouette in reference image) */}
                 {project.troopImage && (
@@ -111,6 +111,8 @@ export const WarLogSection: React.FC = () => {
                     src={project.troopImage}
                     alt=""
                     aria-hidden="true"
+                    loading="lazy"
+                    decoding="async"
                     className="absolute -right-6 -bottom-6 w-44 h-44 object-contain opacity-5 pointer-events-none filter grayscale contrast-200 group-hover:opacity-8 transition-opacity duration-300"
                   />
                 )}
@@ -126,6 +128,7 @@ export const WarLogSection: React.FC = () => {
                           alt={project.troopName || project.title}
                           className="w-full h-full object-contain filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.6)]"
                           loading="lazy"
+                          decoding="async"
                         />
                       </div>
                     ) : (
@@ -196,8 +199,9 @@ export const WarLogSection: React.FC = () => {
                     alt={project.title}
                     src={project.image}
                     loading="lazy"
+                    decoding="async"
                   />
-                  <div className="absolute bottom-1.5 left-1.5 px-2 py-0.5 rounded bg-surface-container-lowest/90 backdrop-blur font-label text-[10px] font-bold text-on-surface border border-surface-container-high shadow-xs">
+                  <div className="absolute bottom-1.5 left-1.5 px-2 py-0.5 rounded bg-surface-container-lowest font-label text-[10px] font-bold text-on-surface border border-surface-container-high shadow-xs">
                     {project.badgeHighlight}
                   </div>
                 </div>

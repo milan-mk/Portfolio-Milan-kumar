@@ -7,9 +7,9 @@ export const HeroSection: React.FC = () => {
   return (
     <section id="citadel-base" className="relative w-full px-4 sm:px-6 py-6 sm:py-8 overflow-hidden">
       {/* Atmospheric Background Gradients & Magma Runes */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(234,88,12,0.22),rgba(12,7,9,0))]"></div>
-      <div className="absolute -right-32 -top-32 w-80 h-80 rounded-full bg-secondary/15 blur-3xl pointer-events-none"></div>
-      <div className="absolute -left-32 top-40 w-80 h-80 rounded-full bg-primary-container/10 blur-3xl pointer-events-none"></div>
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(234,88,12,0.22),rgba(12,7,9,0))] pointer-events-none"></div>
+      <div className="absolute -right-32 -top-32 w-80 h-80 rounded-full bg-secondary/15 blur-3xl pointer-events-none transform-gpu"></div>
+      <div className="absolute -left-32 top-40 w-80 h-80 rounded-full bg-primary-container/10 blur-3xl pointer-events-none transform-gpu"></div>
 
       <div className="max-w-[1040px] mx-auto flex flex-col gap-5">
         {/* HERO / VILLAGE TOWN HALL 10 SECTION */}
@@ -136,6 +136,7 @@ export const HeroSection: React.FC = () => {
                       className="w-44 h-44 object-contain drop-shadow-[0_10px_22px_rgba(234,88,12,0.6)] group-hover:scale-105 group-hover:-translate-y-1 transition-all duration-300"
                       alt="Builder Hall Level 10"
                       src={CHIEF_INFO.builderHallImg}
+                      decoding="async"
                     />
                     <div className="absolute bottom-1 right-1 opacity-0 group-hover:opacity-100 transition-opacity bg-surface-container-lowest/90 px-1.5 py-0.5 rounded text-[9px] font-label text-primary border border-primary-container/30">
                       Click to switch
@@ -151,6 +152,7 @@ export const HeroSection: React.FC = () => {
                       className="w-full h-full object-contain rounded-lg drop-shadow-[0_8px_18px_rgba(234,88,12,0.55)] group-hover:scale-105 transition-all duration-300"
                       alt="Town Hall 10 War Base Layout"
                       src={CHIEF_INFO.th10BaseImg}
+                      decoding="async"
                     />
                     <div className="absolute inset-0 bg-black/55 opacity-0 group-hover:opacity-100 transition-opacity rounded-lg flex flex-col items-center justify-center gap-1 text-primary text-xs font-display font-bold uppercase tracking-wider backdrop-blur-[1px]">
                       <span className="material-symbols-outlined text-[22px] text-primary-container">zoom_in</span>

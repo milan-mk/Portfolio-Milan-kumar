@@ -22,17 +22,8 @@ class VillageAudioManager {
       // Official Supercell Clash of Clans Home Music Part 3
       this.musicAudio = new Audio('/audio/village_theme.mp3');
       this.musicAudio.loop = true;
-      this.musicAudio.preload = 'auto';
+      this.musicAudio.preload = 'none';
       this.musicAudio.volume = this.musicVolume;
-
-      // Event listener to ensure seamless gapless looping
-      this.musicAudio.addEventListener('timeupdate', () => {
-        if (!this.musicAudio) return;
-        // Near end loop adjustment: when within 0.2s of ending, restart smoothly
-        if (this.musicAudio.duration && this.musicAudio.currentTime > this.musicAudio.duration - 0.2) {
-          this.musicAudio.currentTime = 0.1;
-        }
-      });
 
       // Sound Effects
       this.tapAudio = new Audio('/audio/tap.wav');

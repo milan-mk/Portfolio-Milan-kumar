@@ -50,7 +50,7 @@ export const App: React.FC = () => {
       (entries) => {
         for (const entry of entries) {
           if (entry.isIntersecting) {
-            setActiveSection(entry.target.id);
+            setActiveSection((prev) => (prev !== entry.target.id ? entry.target.id : prev));
           }
         }
       },
@@ -104,9 +104,7 @@ export const App: React.FC = () => {
       </main>
 
       {/* Camp Quarters & Scout Outposts Footer */}
-      <ScrollReveal yOffset={20}>
-        <Footer />
-      </ScrollReveal>
+      <Footer />
     </div>
   );
 };

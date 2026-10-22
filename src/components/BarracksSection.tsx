@@ -132,7 +132,7 @@ export const BarracksSection: React.FC = () => {
             return (
               <div
                 key={category.id}
-                className={`relative bg-surface-container/90 backdrop-blur-xs rounded-xl p-4 flex flex-col justify-between border border-surface-container-highest/70 shadow-[0_4px_12px_rgba(0,0,0,0.4)] transition-all duration-300 group hover:-translate-y-1 ${styles.borderGlow}`}
+                className={`relative bg-surface-container rounded-xl p-4 flex flex-col justify-between border border-surface-container-highest/70 shadow-[0_4px_12px_rgba(0,0,0,0.4)] transition-all duration-300 group hover:-translate-y-1 ${styles.borderGlow}`}
               >
                 {/* Top Card Header */}
                 <div className="flex items-center gap-3 pb-3 border-b border-surface-container-highest/50">
@@ -144,6 +144,7 @@ export const BarracksSection: React.FC = () => {
                         alt={category.troopName || category.name}
                         className="w-full h-full object-contain filter drop-shadow-[0_4px_8px_rgba(0,0,0,0.6)]"
                         loading="lazy"
+                        decoding="async"
                       />
                     ) : (
                       <span className="material-symbols-outlined text-[24px] text-secondary">

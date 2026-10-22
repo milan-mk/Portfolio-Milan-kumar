@@ -97,7 +97,7 @@
       radial-gradient(rgba(249, 115, 22, 0.08) 1px, transparent 1px);
     background-size: 100% 100%, 100% 100%, 100% 100%, 36px 36px;
     transform: translateZ(0);
-    will-change: transform;
+    backface-visibility: hidden;
     contain: strict;
   }
 
@@ -214,24 +214,37 @@
 
 .animate-troop-float {
   animation: troop-float 6.5s ease-in-out infinite;
-  will-change: transform;
+  transform: translateZ(0);
 }
 
 .animate-troop-float-reverse {
   animation: troop-float-reverse 7.5s ease-in-out infinite;
-  will-change: transform;
+  transform: translateZ(0);
 }
 
-/* Molten Lava Shimmer / Pulse */
-@keyframes magma-glow {
+/* Molten Lava Shimmer / Pulse — GPU Composited via Opacity (Zero Repaint) */
+.animate-magma-glow {
+  position: relative;
+  box-shadow: 0 0 14px rgba(234, 88, 12, 0.3), inset 0 0 8px rgba(239, 68, 68, 0.15);
+}
+
+.animate-magma-glow::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: 0 0 24px rgba(255, 69, 0, 0.6), inset 0 0 14px rgba(249, 115, 22, 0.3);
+  animation: magma-glow-pulse 3.5s ease-in-out infinite;
+  z-index: 0;
+}
+
+@keyframes magma-glow-pulse {
   0%, 100% {
-    box-shadow: 0 0 14px rgba(234, 88, 12, 0.3), inset 0 0 8px rgba(239, 68, 68, 0.15);
+    opacity: 0;
   }
   50% {
-    box-shadow: 0 0 24px rgba(255, 69, 0, 0.6), inset 0 0 14px rgba(249, 115, 22, 0.3);
+    opacity: 1;
   }
 }
 
-.animate-magma-glow {
-  animation: magma-glow 3.5s ease-in-out infinite;
-}
